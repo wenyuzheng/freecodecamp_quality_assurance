@@ -69,7 +69,7 @@ suite("Functional Tests", function () {
 });
 
 const Browser = require("zombie");
-Browser.site = "http://localhost:3000/";
+Browser.site = "0.0.0.0:3000";
 
 suite("Functional Tests with Zombie.js", function () {
   const browser = new Browser();
