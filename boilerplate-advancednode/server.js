@@ -29,6 +29,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) return next();
+  res.redirect("/");
+};
+
 myDB(async (client) => {
   const myDataBase = await client.db("database").collection("users");
 
@@ -48,6 +53,10 @@ myDB(async (client) => {
         res.redirect("/profile");
       }
     );
+
+  app.route("/profile").get(ensureAuthenticated, (req, res) => {
+    res.render("profile");
+  });
 
   passport.serializeUser((user, done) => {
     done(null, user._id);
