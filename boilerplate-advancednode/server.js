@@ -5,7 +5,6 @@ const myDB = require("./connection");
 const fccTesting = require("./freeCodeCamp/fcctesting.js");
 const session = require("express-session");
 const passport = require("passport");
-const { ObjectID } = require("mongodb");
 const routes = require("./routes");
 const auth = require("./auth");
 const app = express();
@@ -37,7 +36,11 @@ myDB(async (client) => {
   routes(app, myDataBase);
   auth(app, myDataBase);
 
+  let currentUsers = 0;
+
   io.on("connection", (socket) => {
+    ++currentUsers;
+    io.emit("user count", currentUsers);
     console.log("A user has connected");
   });
 }).catch((e) => {
