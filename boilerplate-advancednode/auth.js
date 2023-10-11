@@ -1,6 +1,8 @@
+require("dotenv").config();
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
+const GitHubStrategy = require("passport-github").Strategy;
 
 module.exports = (app, myDataBase) => {
   passport.serializeUser((user, done) => {
@@ -24,5 +26,18 @@ module.exports = (app, myDataBase) => {
         return done(null, user);
       });
     })
+  );
+
+  passport.use(
+    new GitHubStrategy(
+      {
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: "http://localhost:3000/auth/github/callback",
+      },
+      (accessToken, refreshToken, profile, cb) => {
+        console.log(profile);
+      }
+    )
   );
 };
