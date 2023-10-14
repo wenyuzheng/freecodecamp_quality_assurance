@@ -50,7 +50,7 @@ suite("Unit Tests", function () {
   });
 
   suite("Read unit input", () => {
-    test("Should read valid unit input - km", () => {
+    test("Should read valid unit input - gal", () => {
       const result = convertHandler.getUnit("2.2gal");
       const expected = "gal";
       assert.strictEqual(result, expected);
@@ -89,6 +89,44 @@ suite("Unit Tests", function () {
     test("Should return error for invalid input unit", () => {
       const result = convertHandler.getUnit("2.2kilometer");
       const expected = "invalid unit";
+      assert.strictEqual(result, expected);
+    });
+  });
+
+  suite("Return unit", () => {
+    test("Should return correct unit - gal", () => {
+      const result = convertHandler.getReturnUnit("gal");
+      const expected = "L";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct unit - L", () => {
+      const result = convertHandler.getReturnUnit("L");
+      const expected = "gal";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct unit - mi", () => {
+      const result = convertHandler.getReturnUnit("mi");
+      const expected = "km";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct unit - km", () => {
+      const result = convertHandler.getReturnUnit("km");
+      const expected = "mi";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct unit - lbs", () => {
+      const result = convertHandler.getReturnUnit("lbs");
+      const expected = "kg";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct unit - kg", () => {
+      const result = convertHandler.getReturnUnit("kg");
+      const expected = "lbs";
       assert.strictEqual(result, expected);
     });
   });
