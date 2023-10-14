@@ -1,8 +1,18 @@
 function ConvertHandler() {
   this.getNum = function (input) {
-    let result = 1;
+    const index = input.match(/[a-zA-Z]/).index;
+    const digits = input.slice(0, index);
 
-    return result;
+    if (digits === "") {
+      return 1;
+    }
+
+    if (digits.includes("/")) {
+      const [part1, part2] = digits.split("/").map((e) => Number(e));
+      return part1 / part2;
+    }
+
+    return Number(digits);
   };
 
   this.getUnit = function (input) {
