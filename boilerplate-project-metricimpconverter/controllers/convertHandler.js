@@ -7,6 +7,10 @@ function ConvertHandler() {
       return 1;
     }
 
+    if (/\/.*\//.test(digits)) {
+      return "Invalid number";
+    }
+
     if (digits.includes("/")) {
       const [part1, part2] = digits.split("/").map((e) => Number(e));
       return part1 / part2;
