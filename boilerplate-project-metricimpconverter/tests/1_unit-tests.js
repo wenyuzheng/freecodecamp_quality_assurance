@@ -242,4 +242,42 @@ suite("Unit Tests", function () {
       assert.strictEqual(result, expected);
     });
   });
+
+  suite("Get string", () => {
+    test("Should return the correct string - gal to L", () => {
+      const result = convertHandler.getString(2, "gal", 7.57082, "L");
+      const expected = "2 gallons converts to 7.57082 liters";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return the correct string - L to gal", () => {
+      const result = convertHandler.getString(2, "L", 0.52834, "gal");
+      const expected = "2 liters converts to 0.52834 gallons";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return the correct string - mi to km", () => {
+      const result = convertHandler.getString(2, "mi", 3.21868, "km");
+      const expected = "2 miles converts to 3.21868 kilometers";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return the correct string - km to mi", () => {
+      const result = convertHandler.getString(2, "km", 1.24275, "mi");
+      const expected = "2 kilometers converts to 1.24275 miles";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return the correct string - lbs to kg", () => {
+      const result = convertHandler.getString(2, "lbs", 0.90718, "kg");
+      const expected = "2 pounds converts to 0.90718 kilograms";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return the correct string - kg to lbs", () => {
+      const result = convertHandler.getString(2, "kg", 4.40925, "lbs");
+      const expected = "2 kilograms converts to 4.40925 pounds";
+      assert.strictEqual(result, expected);
+    });
+  });
 });
