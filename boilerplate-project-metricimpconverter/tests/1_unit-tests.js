@@ -85,5 +85,11 @@ suite("Unit Tests", function () {
       const expected = "kg";
       assert.strictEqual(result, expected);
     });
+
+    test("Should return error for invalid input unit", () => {
+      const result = convertHandler.getUnit("2.2kilometer");
+      const expected = "Invalid unit";
+      assert.strictEqual(result, expected);
+    });
   });
 });
