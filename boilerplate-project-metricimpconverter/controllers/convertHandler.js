@@ -16,6 +16,10 @@ function ConvertHandler() {
       return part1 / part2;
     }
 
+    if (isNaN(Number(digits))) {
+      return "Invalid number";
+    }
+
     return Number(digits);
   };
 

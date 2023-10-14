@@ -41,5 +41,11 @@ suite("Unit Tests", function () {
       const expected = 1;
       assert.strictEqual(result, expected);
     });
+
+    test("Should return an error on an invalid number", () => {
+      const result = convertHandler.getNum("2.1.2km");
+      const expected = "Invalid number";
+      assert.strictEqual(result, expected);
+    });
   });
 });
