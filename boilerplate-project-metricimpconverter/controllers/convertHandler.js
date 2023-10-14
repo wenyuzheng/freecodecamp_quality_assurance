@@ -24,14 +24,16 @@ function ConvertHandler() {
   };
 
   this.getUnit = function (input) {
-    let result;
-
     const index = input.match(/[a-zA-Z]/).index;
-    const unit = input.slice(index, input.lengtth - 1);
+    const unit = input.slice(index, input.length);
 
-    console.log({ unit });
+    const validUnits = ["gal", "L", "mi", "km", "lbs", "kg"];
 
-    return result;
+    if (validUnits.includes(unit)) {
+      return unit;
+    } else {
+      return "Invalid unit";
+    }
   };
 
   this.getReturnUnit = function (initUnit) {
