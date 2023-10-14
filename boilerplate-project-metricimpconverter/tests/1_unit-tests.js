@@ -130,4 +130,42 @@ suite("Unit Tests", function () {
       assert.strictEqual(result, expected);
     });
   });
+
+  suite("Return spell-out unit", () => {
+    test("Should return correct spell-out unit - gal", () => {
+      const result = convertHandler.spellOutUnit("gal");
+      const expected = "gallons";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct spell-out unit - L", () => {
+      const result = convertHandler.spellOutUnit("L");
+      const expected = "liters";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct spell-out unit - mi", () => {
+      const result = convertHandler.spellOutUnit("mi");
+      const expected = "miles";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct spell-out unit - km", () => {
+      const result = convertHandler.spellOutUnit("km");
+      const expected = "kilometers";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct spell-out unit - lbs", () => {
+      const result = convertHandler.spellOutUnit("lbs");
+      const expected = "pounds";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should return correct spell-out unit - kg", () => {
+      const result = convertHandler.spellOutUnit("kg");
+      const expected = "kilograms";
+      assert.strictEqual(result, expected);
+    });
+  });
 });

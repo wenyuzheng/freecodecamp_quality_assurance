@@ -50,9 +50,16 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function (unit) {
-    let result;
+    const spellOutUnits = {
+      gal: "gallons",
+      L: "liters",
+      mi: "miles",
+      km: "kilometers",
+      lbs: "pounds",
+      kg: "kilograms",
+    };
 
-    return result;
+    return spellOutUnits[unit];
   };
 
   this.convert = function (initNum, initUnit) {
