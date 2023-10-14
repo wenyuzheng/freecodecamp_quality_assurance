@@ -204,4 +204,42 @@ suite("Unit Tests", function () {
       assert.strictEqual(result, expected);
     });
   });
+
+  suite("Convert", () => {
+    test("Should convert number correctly - gal to L", () => {
+      const result = convertHandler.convert(2, "gal");
+      const expected = 7.57082;
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should convert number correctly - L to gal", () => {
+      const result = convertHandler.convert(2, "L");
+      const expected = 0.52834;
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should convert number correctly - mi to km", () => {
+      const result = convertHandler.convert(2, "mi");
+      const expected = 3.21868;
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should convert number correctly - km to mi", () => {
+      const result = convertHandler.convert(2, "km");
+      const expected = 1.24275;
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should convert number correctly - lbs to kg", () => {
+      const result = convertHandler.convert(2, "lbs");
+      const expected = 0.90718;
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should convert number correctly - kg to lbs", () => {
+      const result = convertHandler.convert(2, "kg");
+      const expected = 4.40925;
+      assert.strictEqual(result, expected);
+    });
+  });
 });
