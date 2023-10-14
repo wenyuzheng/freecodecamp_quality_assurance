@@ -25,11 +25,12 @@ function ConvertHandler() {
 
   this.getUnit = function (input) {
     const index = input.match(/[a-zA-Z]/).index;
-    const unit = input.slice(index, input.length);
+    const unit = input.slice(index, input.length).toLowerCase();
 
-    const validUnits = ["gal", "L", "mi", "km", "lbs", "kg"];
+    const validUnits = ["gal", "l", "mi", "km", "lbs", "kg"];
 
     if (validUnits.includes(unit)) {
+      if (unit === "l") return "L";
       return unit;
     } else {
       return "invalid unit";

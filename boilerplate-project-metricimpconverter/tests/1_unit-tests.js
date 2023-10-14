@@ -86,6 +86,42 @@ suite("Unit Tests", function () {
       assert.strictEqual(result, expected);
     });
 
+    test("Should read valid capital unit input - gal", () => {
+      const result = convertHandler.getUnit("2.2Gal");
+      const expected = "gal";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid capital unit input - L", () => {
+      const result = convertHandler.getUnit("2.2l");
+      const expected = "L";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid capital unit input - mi", () => {
+      const result = convertHandler.getUnit("2.2mI");
+      const expected = "mi";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid capital unit input - km", () => {
+      const result = convertHandler.getUnit("2.2KM");
+      const expected = "km";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid capital unit input - lbs", () => {
+      const result = convertHandler.getUnit("2.2LBs");
+      const expected = "lbs";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid capital unit input - kg", () => {
+      const result = convertHandler.getUnit("2.2kG");
+      const expected = "kg";
+      assert.strictEqual(result, expected);
+    });
+
     test("Should return error for invalid input unit", () => {
       const result = convertHandler.getUnit("2.2kilometer");
       const expected = "invalid unit";
