@@ -26,6 +26,11 @@ function ConvertHandler() {
   this.getUnit = function (input) {
     let result;
 
+    const index = input.match(/[a-zA-Z]/).index;
+    const unit = input.slice(index, input.lengtth - 1);
+
+    console.log({ unit });
+
     return result;
   };
 

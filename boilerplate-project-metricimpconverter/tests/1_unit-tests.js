@@ -48,4 +48,42 @@ suite("Unit Tests", function () {
       assert.strictEqual(result, expected);
     });
   });
+
+  suite("Read unit input", () => {
+    test("Should read valid unit input - km", () => {
+      const result = convertHandler.getUnit("2.2gal");
+      const expected = "gal";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid unit input - L", () => {
+      const result = convertHandler.getUnit("2.2L");
+      const expected = "L";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid unit input - mi", () => {
+      const result = convertHandler.getUnit("2.2mi");
+      const expected = "mi";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid unit input - km", () => {
+      const result = convertHandler.getUnit("2.2km");
+      const expected = "km";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid unit input - lbs", () => {
+      const result = convertHandler.getUnit("2.2lbs");
+      const expected = "lbs";
+      assert.strictEqual(result, expected);
+    });
+
+    test("Should read valid unit input - kg", () => {
+      const result = convertHandler.getUnit("2.2kg");
+      const expected = "kg";
+      assert.strictEqual(result, expected);
+    });
+  });
 });
