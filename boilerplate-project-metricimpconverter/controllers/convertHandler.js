@@ -8,7 +8,7 @@ function ConvertHandler() {
     }
 
     if (/\/.*\//.test(digits)) {
-      return "Invalid number";
+      return "invalid number";
     }
 
     if (digits.includes("/")) {
@@ -17,7 +17,7 @@ function ConvertHandler() {
     }
 
     if (isNaN(Number(digits))) {
-      return "Invalid number";
+      return "invalid number";
     }
 
     return Number(digits);
@@ -32,7 +32,7 @@ function ConvertHandler() {
     if (validUnits.includes(unit)) {
       return unit;
     } else {
-      return "Invalid unit";
+      return "invalid unit";
     }
   };
 

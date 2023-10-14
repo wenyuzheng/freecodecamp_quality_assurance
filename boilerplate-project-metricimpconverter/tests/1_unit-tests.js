@@ -32,7 +32,7 @@ suite("Unit Tests", function () {
 
     test("Should return an error on a double-fraction", () => {
       const result = convertHandler.getNum("3/2/3km");
-      const expected = "Invalid number";
+      const expected = "invalid number";
       assert.strictEqual(result, expected);
     });
 
@@ -44,7 +44,7 @@ suite("Unit Tests", function () {
 
     test("Should return an error on an invalid number", () => {
       const result = convertHandler.getNum("2.1.2km");
-      const expected = "Invalid number";
+      const expected = "invalid number";
       assert.strictEqual(result, expected);
     });
   });
@@ -88,7 +88,7 @@ suite("Unit Tests", function () {
 
     test("Should return error for invalid input unit", () => {
       const result = convertHandler.getUnit("2.2kilometer");
-      const expected = "Invalid unit";
+      const expected = "invalid unit";
       assert.strictEqual(result, expected);
     });
   });
