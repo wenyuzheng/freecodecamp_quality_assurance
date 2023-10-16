@@ -78,6 +78,7 @@ suite("Functional Tests", function () {
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.isArray(res.body);
+          console.log(res.body);
           res.body.forEach((e) => {
             assert.strictEqual(e.project, "apitest");
           });
@@ -89,7 +90,7 @@ suite("Functional Tests", function () {
       chai
         .request(server)
         .keepOpen()
-        .get("/api/issues/apitest")
+        .get("/api/issues/apitest?open=false")
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.isArray(res.body);
@@ -105,7 +106,7 @@ suite("Functional Tests", function () {
       chai
         .request(server)
         .keepOpen()
-        .get("/api/issues/apitest")
+        .get("/api/issues/apitest?open=true&created_by=test1")
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.isArray(res.body);
