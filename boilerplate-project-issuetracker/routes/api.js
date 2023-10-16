@@ -64,14 +64,18 @@ module.exports = function (app) {
       const { _id, ...updates } = req.body;
 
       if (!_id) return res.json({ error: "missing _id" });
+      if (Object.keys(updates).length === 0)
+        return res.json({ error: "no update field(s) sent", _id });
 
       Issue.findOneAndUpdate(
         { _id },
         { ...updates, updated_on: new Date() },
         { new: true }
       ).then((issue, err) => {
+        console.log({ issue, err });
+
         if (err) return res.json({ error: "could not update", _id });
-        console.log({ issue });
+        // console.log({ issue });
 
         return res.json({ result: "successfully updated", _id });
       });
