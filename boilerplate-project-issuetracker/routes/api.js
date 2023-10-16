@@ -60,7 +60,15 @@ module.exports = function (app) {
     })
 
     .put(function (req, res) {
-      let project = req.params.project;
+      const project = req.params.project;
+
+      const { _id } = req.body;
+
+      if (!_id) return res.json({ error: "missing _id" });
+
+      Issue.findOneAndUpdate({ _id }).then((issue, err) => {
+        console.log(issue);
+      });
     })
 
     .delete(function (req, res) {

@@ -119,12 +119,12 @@ suite("Functional Tests", function () {
     });
   });
 
-  suite("POST issue", () => {
-    test("POST /api/issues/apitest to update one field", function (done) {
+  suite("PUT issue", () => {
+    test("PUT /api/issues/apitest to update one field", function (done) {
       chai
         .request(server)
         .keepOpen()
-        .post("/api/issues/apitest")
+        .put("/api/issues/apitest")
         .send({ _id: "652d1aad79781193d4fcb54d", issue_title: "test2" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
@@ -136,11 +136,11 @@ suite("Functional Tests", function () {
         });
     });
 
-    test("POST /api/issues/apitest to update multiple fields", function (done) {
+    test("PUT /api/issues/apitest to update multiple fields", function (done) {
       chai
         .request(server)
         .keepOpen()
-        .post("/api/issues/apitest")
+        .put("/api/issues/apitest")
         .send({
           _id: "652d1aad79781193d4fcb54d",
           issue_text: "test2",
@@ -156,11 +156,11 @@ suite("Functional Tests", function () {
         });
     });
 
-    test("POST /api/issues/apitest with missing _id", function (done) {
+    test("PUT /api/issues/apitest with missing _id", function (done) {
       chai
         .request(server)
         .keepOpen()
-        .post("/api/issues/apitest")
+        .put("/api/issues/apitest")
         .send({})
         .end(function (err, res) {
           assert.equal(res.status, 200);
@@ -169,11 +169,11 @@ suite("Functional Tests", function () {
         });
     });
 
-    test("POST /api/issues/apitest with no fields to update", function (done) {
+    test("PUT /api/issues/apitest with no fields to update", function (done) {
       chai
         .request(server)
         .keepOpen()
-        .post("/api/issues/apitest")
+        .put("/api/issues/apitest")
         .send({ _id: "652d1aad79781193d4fcb54d" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
@@ -185,11 +185,11 @@ suite("Functional Tests", function () {
         });
     });
 
-    test("POST /api/issues/apitest with invalid _id", function (done) {
+    test("PUT /api/issues/apitest with invalid _id", function (done) {
       chai
         .request(server)
         .keepOpen()
-        .post("/api/issues/apitest")
+        .put("/api/issues/apitest")
         .send({ _id: "1" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
