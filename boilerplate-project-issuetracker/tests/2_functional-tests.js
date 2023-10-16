@@ -205,12 +205,12 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .delete("/api/issues/apitest")
-        .send({ _id: "652d1aad79781193d4fcb54d" })
+        .send({ _id: "652d1acdeb24b2526449b085" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             result: "successfully deleted",
-            _id: "652d1aad79781193d4fcb54d",
+            _id: "652d1acdeb24b2526449b085",
           });
           done();
         });
@@ -234,10 +234,13 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .delete("/api/issues/apitest")
-        .send({ _id: "1" })
+        .send({ _id: "652d1ac2ffaf977717532333" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
-          assert.deepEqual(res.body, { error: "could not delete", _id: "1" });
+          assert.deepEqual(res.body, {
+            error: "could not delete",
+            _id: "652d1ac2ffaf977717532333",
+          });
           done();
         });
     });
