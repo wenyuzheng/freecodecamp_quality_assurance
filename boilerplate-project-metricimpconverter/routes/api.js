@@ -23,6 +23,15 @@ module.exports = function (app) {
       return res.json("invalid unit");
     }
 
-    res.json({ initNum, initUnit });
+    const returnNum = convertHandler.convert(initNum, initUnit);
+    const returnUnit = convertHandler.getReturnUnit(initUnit);
+    const string = convertHandler.getString(
+      initNum,
+      initUnit,
+      returnNum,
+      returnUnit
+    );
+
+    return res.json({ initNum, initUnit, returnNum, returnUnit, string });
   });
 };
