@@ -198,4 +198,48 @@ suite("Functional Tests", function () {
         });
     });
   });
+
+  suite("DELETE issue", () => {
+    test("DELETE /api/issues/apitest", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .delete("/api/issues/apitest")
+        .send({ _id: "652d1aad79781193d4fcb54d" })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.deepEqual(res.body, {
+            result: "successfully deleted",
+            _id: "652d1aad79781193d4fcb54d",
+          });
+          done();
+        });
+    });
+
+    test("DELETE /api/issues/apitest", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .delete("/api/issues/apitest")
+        .send({})
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.deepEqual(res.body, { error: "missing _id" });
+          done();
+        });
+    });
+
+    test("DELETE /api/issues/apitest", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .delete("/api/issues/apitest")
+        .send({ _id: "1" })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.deepEqual(res.body, { error: "could not delete", _id: "1" });
+          done();
+        });
+    });
+  });
 });
