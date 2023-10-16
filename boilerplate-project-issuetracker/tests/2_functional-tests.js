@@ -68,4 +68,54 @@ suite("Functional Tests", function () {
         });
     });
   });
+
+  suite("GET issue", () => {
+    test("GET /api/issues/apitest", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get("/api/issues/apitest")
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          res.body.forEach((e) => {
+            assert.strictEqual(e.project, "apitest");
+          });
+          done();
+        });
+    });
+
+    test("GET /api/issues/apitest?open=false", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get("/api/issues/apitest")
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          res.body.forEach((e) => {
+            assert.strictEqual(e.project, "apitest");
+            assert.isFalse(e.open);
+          });
+          done();
+        });
+    });
+
+    test("GET /api/issues/apitest?open=true&created_by=test1", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get("/api/issues/apitest")
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          res.body.forEach((e) => {
+            assert.strictEqual(e.project, "apitest");
+            assert.isTrue(e.open);
+            assert.strictEqual(e.created_by, "test1");
+          });
+          done();
+        });
+    });
+  });
 });

@@ -26,6 +26,10 @@ module.exports = function (app) {
 
     .get(function (req, res) {
       let project = req.params.project;
+
+      Issue.find({ project }).then((arr) => {
+        return res.json(arr);
+      });
     })
 
     .post(function (req, res) {
