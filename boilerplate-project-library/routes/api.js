@@ -18,7 +18,8 @@ module.exports = function (app) {
 
   const bookSchema = new mongoose.Schema({
     title: { type: String, required: true },
-    comments: Array,
+    comments: [String],
+    commentcount: { type: Number, default: 0 },
   });
 
   const Book = mongoose.model("Book", bookSchema);
@@ -26,7 +27,10 @@ module.exports = function (app) {
   app
     .route("/api/books")
     .get(function (req, res) {
-      //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
+      Book.find().then((books, err) => {
+        console.log({ books });
+        res.json(books);
+      });
     })
 
     .post(function (req, res) {
@@ -34,6 +38,7 @@ module.exports = function (app) {
 
       if (!title) return res.json("missing required field title");
       Book.create({ title }).then((book, err) => {
+        console.log({ book });
         return res.json({ title, _id: book._id });
       });
     })
