@@ -84,11 +84,7 @@ module.exports = function (app) {
       const { _id } = req.body;
       if (!_id) return res.json({ error: "missing _id" });
 
-      // if (!mongoose.Types.ObjectId.isValid(_id))
-      //   return res.json({ error: "could not delete", _id });
-
       Issue.findByIdAndDelete({ _id }).then((issue, err) => {
-        console.log({ issue, err });
         if (issue) return res.json({ result: "successfully deleted", _id });
         else return res.json({ error: "could not delete", _id });
       });

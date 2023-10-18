@@ -205,12 +205,12 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .delete("/api/issues/apitest")
-        .send({ _id: "652d1acdeb24b2526449b085" })
+        .send({ _id: "652d1ac2ffaf977717532333" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             result: "successfully deleted",
-            _id: "652d1acdeb24b2526449b085",
+            _id: "652d1ac2ffaf977717532333",
           });
           done();
         });
