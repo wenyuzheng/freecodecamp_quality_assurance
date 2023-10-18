@@ -192,5 +192,18 @@ suite("Functional Tests", function () {
           });
       });
     });
+
+    suite("DELETE /api/books => delete all books", function () {
+      test("Test DELETE /api/books", function (done) {
+        chai
+          .request(server)
+          .delete("/api/books")
+          .end((err, res) => {
+            assert.equal(res.status, 200);
+            assert.equal(res.body, "complete delete successful");
+            done();
+          });
+      });
+    });
   });
 });
