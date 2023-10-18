@@ -5,119 +5,123 @@ const server = require("../server");
 
 chai.use(chaiHttp);
 
+let id1 = "";
+
 suite("Functional Tests", function () {
-  //   suite("POST new issue", () => {
-  //     test("POST /api/issues/apitest with every field", function (done) {
-  //       chai
-  //         .request(server)
-  //         .keepOpen()
-  //         .post("/api/issues/apitest")
-  //         .send({
-  //           issue_title: "test1",
-  //           issue_text: "test1",
-  //           created_by: "test1",
-  //           assigned_to: "test1",
-  //           status_text: "test1",
-  //         })
-  //         .end(function (err, res) {
-  //           assert.equal(res.status, 200);
-  //           assert.strictEqual(res.body.issue_title, "test1");
-  //           assert.strictEqual(res.body.issue_text, "test1");
-  //           assert.strictEqual(res.body.created_by, "test1");
-  //           assert.strictEqual(res.body.assigned_to, "test1");
-  //           assert.strictEqual(res.body.status_text, "test1");
-  //           assert.isTrue(res.body.open);
-  //           done();
-  //         });
-  //     });
+  suite("POST new issue", () => {
+    test("POST /api/issues/apitest with every field", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .post("/api/issues/apitest")
+        .send({
+          issue_title: "test1",
+          issue_text: "test1",
+          created_by: "test1",
+          assigned_to: "test1",
+          status_text: "test1",
+        })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.strictEqual(res.body.issue_title, "test1");
+          assert.strictEqual(res.body.issue_text, "test1");
+          assert.strictEqual(res.body.created_by, "test1");
+          assert.strictEqual(res.body.assigned_to, "test1");
+          assert.strictEqual(res.body.status_text, "test1");
+          assert.isTrue(res.body.open);
 
-  //     test("POST /api/issues/apitest with only required fields", function (done) {
-  //       chai
-  //         .request(server)
-  //         .keepOpen()
-  //         .post("/api/issues/apitest")
-  //         .send({
-  //           issue_title: "test1",
-  //           issue_text: "test1",
-  //           created_by: "test1",
-  //         })
-  //         .end(function (err, res) {
-  //           assert.equal(res.status, 200);
-  //           assert.strictEqual(res.body.issue_title, "test1");
-  //           assert.strictEqual(res.body.issue_text, "test1");
-  //           assert.strictEqual(res.body.created_by, "test1");
-  //           assert.strictEqual(res.body.assigned_to, "");
-  //           assert.strictEqual(res.body.status_text, "");
-  //           assert.isTrue(res.body.open);
-  //           done();
-  //         });
-  //     });
+          id1 = res.body._id;
+          done();
+        });
+    });
 
-  //     test("POST /api/issues/apitest with missing required fields", function (done) {
-  //       chai
-  //         .request(server)
-  //         .keepOpen()
-  //         .post("/api/issues/apitest")
-  //         .send({
-  //           issue_title: "test1",
-  //         })
-  //         .end(function (err, res) {
-  //           assert.equal(res.status, 200);
-  //           assert.deepEqual(res.body, { error: "required field(s) missing" });
-  //           done();
-  //         });
-  //     });
-  //   });
+    test("POST /api/issues/apitest with only required fields", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .post("/api/issues/apitest")
+        .send({
+          issue_title: "test1",
+          issue_text: "test1",
+          created_by: "test1",
+        })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.strictEqual(res.body.issue_title, "test1");
+          assert.strictEqual(res.body.issue_text, "test1");
+          assert.strictEqual(res.body.created_by, "test1");
+          assert.strictEqual(res.body.assigned_to, "");
+          assert.strictEqual(res.body.status_text, "");
+          assert.isTrue(res.body.open);
+          done();
+        });
+    });
 
-  //   suite("GET issue", () => {
-  //     test("GET /api/issues/apitest", function (done) {
-  //       chai
-  //         .request(server)
-  //         .keepOpen()
-  //         .get("/api/issues/apitest")
-  //         .end(function (err, res) {
-  //           assert.equal(res.status, 200);
-  //           assert.isArray(res.body);
-  //           res.body.forEach((e) => {
-  //             assert.strictEqual(e.project, "apitest");
-  //           });
-  //           done();
-  //         });
-  //     });
+    test("POST /api/issues/apitest with missing required fields", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .post("/api/issues/apitest")
+        .send({
+          issue_title: "test1",
+        })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.deepEqual(res.body, { error: "required field(s) missing" });
+          done();
+        });
+    });
+  });
 
-  //     test("GET /api/issues/apitest?open=false", function (done) {
-  //       chai
-  //         .request(server)
-  //         .keepOpen()
-  //         .get("/api/issues/apitest?open=false")
-  //         .end(function (err, res) {
-  //           assert.equal(res.status, 200);
-  //           assert.isArray(res.body);
-  //           res.body.forEach((e) => {
-  //             assert.strictEqual(e.project, "apitest");
-  //             assert.isFalse(e.open);
-  //           });
-  //           done();
-  //         });
-  //     });
+  suite("GET issue", () => {
+    test("GET /api/issues/apitest", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get("/api/issues/apitest")
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          res.body.forEach((e) => {
+            assert.strictEqual(e.project, "apitest");
+          });
+          done();
+        });
+    });
 
-  //     test("GET /api/issues/apitest?open=true&created_by=test1", function (done) {
-  //       chai
-  //         .request(server)
-  //         .keepOpen()
-  //         .get("/api/issues/apitest?open=true&created_by=test1")
-  //         .end(function (err, res) {
-  //           assert.equal(res.status, 200);
-  //           assert.isArray(res.body);
-  //           res.body.forEach((e) => {
-  //             assert.strictEqual(e.project, "apitest");
-  //             assert.isTrue(e.open);
-  //             assert.strictEqual(e.created_by, "test1");
-  //           });
-  //           done();
-  //         });
-  //     });
-  //   });
+    test("GET /api/issues/apitest?open=false", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get("/api/issues/apitest?open=false")
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          res.body.forEach((e) => {
+            assert.strictEqual(e.project, "apitest");
+            assert.isFalse(e.open);
+          });
+          done();
+        });
+    });
+
+    test("GET /api/issues/apitest?open=true&created_by=test1", function (done) {
+      chai
+        .request(server)
+        .keepOpen()
+        .get("/api/issues/apitest?open=true&created_by=test1")
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.isArray(res.body);
+          res.body.forEach((e) => {
+            assert.strictEqual(e.project, "apitest");
+            assert.isTrue(e.open);
+            assert.strictEqual(e.created_by, "test1");
+          });
+          done();
+        });
+    });
+  });
 
   suite("PUT issue", () => {
     test("PUT /api/issues/apitest to update one field", function (done) {
@@ -125,12 +129,12 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .put("/api/issues/apitest")
-        .send({ _id: "652d1aad79781193d4fcb54d", issue_title: "test2" })
+        .send({ _id: id1, issue_title: "test2" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             result: "successfully updated",
-            _id: "652d1aad79781193d4fcb54d",
+            _id: id1,
           });
           done();
         });
@@ -142,7 +146,7 @@ suite("Functional Tests", function () {
         .keepOpen()
         .put("/api/issues/apitest")
         .send({
-          _id: "652d1aad79781193d4fcb54d",
+          _id: id1,
           issue_text: "test2",
           open: false,
         })
@@ -150,7 +154,7 @@ suite("Functional Tests", function () {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             result: "successfully updated",
-            _id: "652d1aad79781193d4fcb54d",
+            _id: id1,
           });
           done();
         });
@@ -174,12 +178,12 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .put("/api/issues/apitest")
-        .send({ _id: "652d1aad79781193d4fcb54d" })
+        .send({ _id: id1 })
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             error: "no update field(s) sent",
-            _id: "652d1aad79781193d4fcb54d",
+            _id: id1,
           });
           done();
         });
@@ -190,10 +194,13 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .put("/api/issues/apitest")
-        .send({ _id: "1", issue_text: "test2" })
+        .send({ _id: "652d1ac2ffaf977717532333", issue_text: "test2" })
         .end(function (err, res) {
           assert.equal(res.status, 200);
-          assert.deepEqual(res.body, { error: "could not update", _id: "1" });
+          assert.deepEqual(res.body, {
+            error: "could not update",
+            _id: "652d1ac2ffaf977717532333",
+          });
           done();
         });
     });
@@ -205,12 +212,12 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .delete("/api/issues/apitest")
-        .send({ _id: "652d1ac2ffaf977717532333" })
+        .send({ _id: id1 })
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             result: "successfully deleted",
-            _id: "652d1ac2ffaf977717532333",
+            _id: id1,
           });
           done();
         });
@@ -234,12 +241,12 @@ suite("Functional Tests", function () {
         .request(server)
         .keepOpen()
         .delete("/api/issues/apitest")
-        .send({ _id: "652d1ac2ffaf977717532333" })
+        .send({ _id: id1 })
         .end(function (err, res) {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             error: "could not delete",
-            _id: "652d1ac2ffaf977717532333",
+            _id: id1,
           });
           done();
         });
