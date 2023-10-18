@@ -169,14 +169,28 @@ suite("Functional Tests", function () {
       }
     );
 
-    //   suite("DELETE /api/books/[id] => delete book object id", function () {
-    //     test("Test DELETE /api/books/[id] with valid id in db", function (done) {
-    //       //done();
-    //     });
+    suite("DELETE /api/books/[id] => delete book object id", function () {
+      test("Test DELETE /api/books/[id] with valid id in db", function (done) {
+        chai
+          .request(server)
+          .delete("/api/books/" + id1)
+          .end((err, res) => {
+            assert.equal(res.status, 200);
+            assert.equal(res.body, "delete successful");
+            done();
+          });
+      });
 
-    //     test("Test DELETE /api/books/[id] with  id not in db", function (done) {
-    //       //done();
-    //     });
-    //   });
+      test("Test DELETE /api/books/[id] with id not in db", function (done) {
+        chai
+          .request(server)
+          .delete("/api/books/652fb8f11c5f6451b7682fe1")
+          .end((err, res) => {
+            assert.equal(res.status, 200);
+            assert.equal(res.body, "no book exists");
+            done();
+          });
+      });
+    });
   });
 });
