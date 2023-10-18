@@ -67,16 +67,13 @@ module.exports = function (app) {
       if (Object.keys(updates).length === 0)
         return res.json({ error: "no update field(s) sent", _id });
 
-      if (!mongoose.Types.ObjectId.isValid(_id))
-        return res.json({ error: "could not update", _id });
-
       Issue.findOneAndUpdate(
         { _id },
         { ...updates, updated_on: new Date() },
         { new: true }
       ).then((issue, err) => {
-        if (err) return res.json({ error: "could not update", _id });
-        return res.json({ result: "successfully updated", _id });
+        if (issue) return res.json({ result: "successfully updated", _id });
+        return res.json({ error: "could not update", _id });
       });
     })
 
