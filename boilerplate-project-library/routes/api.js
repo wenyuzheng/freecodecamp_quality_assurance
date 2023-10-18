@@ -26,7 +26,6 @@ module.exports = function (app) {
   app
     .route("/api/books")
     .get(function (req, res) {
-      //response will be array of book objects
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
     })
 
