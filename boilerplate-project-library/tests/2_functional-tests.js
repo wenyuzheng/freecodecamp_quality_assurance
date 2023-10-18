@@ -13,6 +13,8 @@ const server = require("../server");
 
 chai.use(chaiHttp);
 
+let id1 = "";
+
 suite("Functional Tests", function () {
   /*
    * ----[EXAMPLE TEST]----
@@ -60,6 +62,7 @@ suite("Functional Tests", function () {
               assert.equal(res.status, 200);
               assert.deepEqual(res.body.title, "test");
               assert.property(res.body, "_id");
+              id1 = res.body._id;
               done();
             });
         });
@@ -95,15 +98,34 @@ suite("Functional Tests", function () {
       });
     });
 
-    // suite("GET /api/books/[id] => book object with [id]", function () {
-    //   test("Test GET /api/books/[id] with id not in db", function (done) {
-    //     //done();
-    //   });
+    suite("GET /api/books/[id] => book object with [id]", function () {
+      test("Test GET /api/books/[id] with id not in db", function (done) {
+        chai
+          .request(server)
+          .get("/api/books/idthatdoesntexist")
+          .end((err, res) => {
+            assert.equal(res.status, 200);
+            assert.equal(res.json, "no book exists");
+            done();
+          });
+      });
 
-    //   test("Test GET /api/books/[id] with valid id in db", function (done) {
-    //     //done();
-    //   });
-    // });
+      test("Test GET /api/books/[id] with valid id in db", function (done) {
+        chai
+          .request(server)
+          .get("/api/books/" + id1)
+          .end((err, res) => {
+            assert.equal(res.status, 200);
+            assert.equal(res.json, {
+              title: "test",
+              _id: id1,
+              comments: [],
+              commentcount: 0,
+            });
+            done();
+          });
+      });
+    });
 
     //   suite(
     //     "POST /api/books/[id] => add comment/expect book object with id",
