@@ -28,7 +28,6 @@ module.exports = function (app) {
     .route("/api/books")
     .get(function (req, res) {
       Book.find().then((books, err) => {
-        console.log({ books });
         res.json(books);
       });
     })
@@ -38,7 +37,6 @@ module.exports = function (app) {
 
       if (!title) return res.json("missing required field title");
       Book.create({ title }).then((book, err) => {
-        console.log({ book });
         return res.json({ title, _id: book._id });
       });
     })
@@ -50,8 +48,11 @@ module.exports = function (app) {
   app
     .route("/api/books/:id")
     .get(function (req, res) {
-      let bookid = req.params.id;
-      //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
+      const bookid = req.params.id;
+      Book.findById(bookid).then((book, err) => {
+        if (book) return res.json(book);
+        return res.json("no book exists");
+      });
     })
 
     .post(function (req, res) {

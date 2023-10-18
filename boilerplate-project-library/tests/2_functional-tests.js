@@ -102,10 +102,10 @@ suite("Functional Tests", function () {
       test("Test GET /api/books/[id] with id not in db", function (done) {
         chai
           .request(server)
-          .get("/api/books/idthatdoesntexist")
+          .get("/api/books/652fb8f11c5f6451b7682fe1")
           .end((err, res) => {
             assert.equal(res.status, 200);
-            assert.equal(res.json, "no book exists");
+            assert.equal(res.body, "no book exists");
             done();
           });
       });
@@ -116,12 +116,10 @@ suite("Functional Tests", function () {
           .get("/api/books/" + id1)
           .end((err, res) => {
             assert.equal(res.status, 200);
-            assert.equal(res.json, {
-              title: "test",
-              _id: id1,
-              comments: [],
-              commentcount: 0,
-            });
+            assert.equal(res.body._id, id1);
+            assert.equal(res.body.title, "test");
+            assert.deepEqual(res.body.comments, []);
+            assert.equal(res.body.commentcount, 0);
             done();
           });
       });
