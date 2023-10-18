@@ -72,7 +72,10 @@ module.exports = function (app) {
     })
 
     .delete(function (req, res) {
-      let bookid = req.params.id;
-      //if successful response will be 'delete successful'
+      const bookid = req.params.id;
+      Book.findByIdAndDelete(bookid).then((book, err) => {
+        if (book) return res.json("delete successful");
+        return res.json("no book exists");
+      });
     });
 };
