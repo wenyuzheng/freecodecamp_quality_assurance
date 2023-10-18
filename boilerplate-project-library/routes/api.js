@@ -34,10 +34,8 @@ module.exports = function (app) {
       const title = req.body.title;
 
       if (!title) return res.json("missing required field title");
-
       Book.create({ title }).then((book, err) => {
-        console.log({ book, err });
-        res.json({ title, _id: book._id });
+        return res.json({ title, _id: book._id });
       });
     })
 
