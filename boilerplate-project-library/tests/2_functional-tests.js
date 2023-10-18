@@ -125,22 +125,49 @@ suite("Functional Tests", function () {
       });
     });
 
-    //   suite(
-    //     "POST /api/books/[id] => add comment/expect book object with id",
-    //     function () {
-    //       test("Test POST /api/books/[id] with comment", function (done) {
-    //         //done();
-    //       });
+    suite(
+      "POST /api/books/[id] => add comment/expect book object with id",
+      function () {
+        test("Test POST /api/books/[id] with comment", function (done) {
+          chai
+            .request(server)
+            .post("/api/books/" + id1)
+            .send({ comment: "good" })
+            .end((err, res) => {
+              assert.equal(res.status, 200);
+              assert.equal(res.body._id, id1);
+              assert.equal(res.body.title, "test");
+              assert.deepEqual(res.body.comments, ["good"]);
+              assert.equal(res.body.commentcount, 1);
+              done();
+            });
+        });
 
-    //       test("Test POST /api/books/[id] without comment field", function (done) {
-    //         //done();
-    //       });
+        test("Test POST /api/books/[id] without comment field", function (done) {
+          chai
+            .request(server)
+            .post("/api/books/" + id1)
+            .send({})
+            .end((err, res) => {
+              assert.equal(res.status, 200);
+              assert.equal(res.body, "missing required field comment");
+              done();
+            });
+        });
 
-    //       test("Test POST /api/books/[id] with comment, id not in db", function (done) {
-    //         //done();
-    //       });
-    //     }
-    //   );
+        test("Test POST /api/books/[id] with comment, id not in db", function (done) {
+          chai
+            .request(server)
+            .post("/api/books/652fb8f11c5f6451b7682fe1")
+            .send({ comment: "good" })
+            .end((err, res) => {
+              assert.equal(res.status, 200);
+              assert.equal(res.body, "no book exists");
+              done();
+            });
+        });
+      }
+    );
 
     //   suite("DELETE /api/books/[id] => delete book object id", function () {
     //     test("Test DELETE /api/books/[id] with valid id in db", function (done) {
