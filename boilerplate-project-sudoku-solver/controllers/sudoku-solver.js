@@ -7,7 +7,10 @@ class SudokuSolver {
     return result;
   }
 
-  checkRowPlacement(puzzleString, row, column, value) {}
+  checkRowPlacement(puzzleString, row, column, value) {
+    const rowArray = puzzleString.slice(row * 9, row * 9 + 9);
+    return !rowArray.includes(value);
+  }
 
   checkColPlacement(puzzleString, row, column, value) {}
 
