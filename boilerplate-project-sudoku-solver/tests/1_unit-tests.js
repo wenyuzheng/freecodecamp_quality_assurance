@@ -59,4 +59,20 @@ suite("Unit Tests", () => {
       assert.isFalse(result);
     });
   });
+
+  suite("checkRegionPlacement", () => {
+    test("valid region placement", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.checkRegionPlacement(puzzle, 0, 1, 3);
+      assert.isTrue(result);
+    });
+
+    test("invalid region placement", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.checkRegionPlacement(puzzle, 0, 1, 6);
+      assert.isFalse(result);
+    });
+  });
 });

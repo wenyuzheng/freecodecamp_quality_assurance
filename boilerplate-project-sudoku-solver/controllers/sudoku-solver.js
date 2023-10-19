@@ -20,7 +20,25 @@ class SudokuSolver {
     return !colArray.includes(value.toString());
   }
 
-  checkRegionPlacement(puzzleString, row, column, value) {}
+  checkRegionPlacement(puzzleString, row, column, value) {
+    const puzzleArray = [];
+    for (let i = 0; i < 9; i++) {
+      puzzleArray.push(puzzleString.slice(9 * i, 9 * i + 9));
+    }
+
+    const regionArray = [];
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        regionArray.push(
+          puzzleArray[Math.floor(row / 3) * 3 + i][
+            Math.floor(column / 3) * 3 + j
+          ]
+        );
+      }
+    }
+
+    return !regionArray.includes(value.toString());
+  }
 
   solve(puzzleString) {}
 }
