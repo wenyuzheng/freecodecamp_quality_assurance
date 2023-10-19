@@ -8,11 +8,17 @@ class SudokuSolver {
   }
 
   checkRowPlacement(puzzleString, row, column, value) {
-    const rowArray = puzzleString.slice(row * 9, row * 9 + 9);
-    return !rowArray.includes(value);
+    const rowString = puzzleString.slice(row * 9, row * 9 + 9);
+    return !rowString.includes(value);
   }
 
-  checkColPlacement(puzzleString, row, column, value) {}
+  checkColPlacement(puzzleString, row, column, value) {
+    const colArray = [];
+    for (let i = 0; i < 9; i++) {
+      colArray.push(puzzleString[9 * i + column]);
+    }
+    return !colArray.includes(value.toString());
+  }
 
   checkRegionPlacement(puzzleString, row, column, value) {}
 
