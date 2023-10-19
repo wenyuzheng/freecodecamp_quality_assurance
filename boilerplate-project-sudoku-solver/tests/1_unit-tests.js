@@ -75,4 +75,20 @@ suite("Unit Tests", () => {
       assert.isFalse(result);
     });
   });
+
+  suite("solve", () => {
+    test("valid puzzle", () => {
+      const puzzle =
+        "135762984946381257728459613694517832812936745357824196473298561581673429269145378";
+      const result = solver.solve(puzzle);
+      assert.isTrue(result);
+    });
+
+    test("invalid puzzle", () => {
+      const puzzle =
+        ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+      const result = solver.solve(puzzle);
+      assert.isFalse(result);
+    });
+  });
 });
