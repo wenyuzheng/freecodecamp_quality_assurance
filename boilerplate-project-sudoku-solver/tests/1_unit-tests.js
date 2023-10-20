@@ -76,6 +76,22 @@ suite("Unit Tests", () => {
     });
   });
 
+  suite("isSafeToPlace", () => {
+    test("valid placement", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.isSafeToPlace(puzzle, 0, 1, 3);
+      assert.isTrue(result);
+    });
+
+    test("invalid placement", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.isSafeToPlace(puzzle, 0, 1, 6);
+      assert.isFalse(result);
+    });
+  });
+
   suite("solve", () => {
     test("valid puzzle", () => {
       const puzzle =
