@@ -105,13 +105,10 @@ class SudokuSolver {
 
   solve(puzzleString) {
     const puzzleMatrix = this.transform(puzzleString);
-
     const solved = this.solvePuzzle(puzzleMatrix);
-
     if (!solved) {
       return false;
     }
-
     return solved.map((e) => e.join("")).join("");
   }
 }
