@@ -104,13 +104,11 @@ class SudokuSolver {
 
     const solved = this.solvePuzzle(puzzleMatrix);
 
-    console.log({ solved });
-
     if (!solved) {
       return false;
     }
 
-    return solution;
+    return solved.map((e) => e.join("")).join("");
   }
 }
 
