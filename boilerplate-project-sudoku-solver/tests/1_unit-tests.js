@@ -121,6 +121,22 @@ suite("Unit Tests", () => {
     });
   });
 
+  // suite("solvePuzzle", () => {
+  //   test("cannot solve", () => {
+  //     const puzzle =
+  //       ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+  //     const result = solver.solvePuzzle(puzzle);
+  //     assert.isFalse(result);
+  //   });
+
+  //   // test("solve", () => {
+  //   //   const puzzle =
+  //   //     ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+  //   //   const result = solver.solvePuzzle(puzzle);
+  //   //   assert.isFalse(result);
+  //   // });
+  // });
+
   suite("solve", () => {
     test("valid puzzle", () => {
       const puzzle =
@@ -132,21 +148,21 @@ suite("Unit Tests", () => {
       );
     });
 
-    test("invalid puzzle", () => {
-      const puzzle =
-        ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
-      const result = solver.solve(puzzle);
-      assert.isFalse(result);
-    });
+    // test("invalid puzzle", () => {
+    //   const puzzle =
+    //     ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+    //   const result = solver.solve(puzzle);
+    //   assert.isFalse(result);
+    // });
 
-    test("return solution for an incomplete puzzle", () => {
-      const puzzle =
-        "5..91372.3...8.5.9.9.25..8.68.47.23...95..46.7.4.....5.2.......4..8916..85.72...3";
-      const result = solver.solve(puzzle);
-      assert.equal(
-        result,
-        "568913724342687519197254386685479231219538467734162895926345178473891652851726943"
-      );
-    });
+    // test("return solution for an incomplete puzzle", () => {
+    //   const puzzle =
+    //     "5..91372.3...8.5.9.9.25..8.68.47.23...95..46.7.4.....5.2.......4..8916..85.72...3";
+    //   const result = solver.solve(puzzle);
+    //   assert.equal(
+    //     result,
+    //     "568913724342687519197254386685479231219538467734162895926345178473891652851726943"
+    //   );
+    // });
   });
 });

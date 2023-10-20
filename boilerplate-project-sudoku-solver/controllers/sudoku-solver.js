@@ -69,18 +69,68 @@ class SudokuSolver {
     return puzzleMatrix;
   }
 
-  solvePuzzle(puzzleString) {
-    const puzzleMatrix = transform(puzzleString);
+  // solvePuzzle(puzzleString) {
+  //   const puzzleMatrix = transform(puzzleString);
 
+  //   for (let i = 0; i < 9; i++) {
+  //     for (let j = 0; j < 9; j++) {
+  //       if (puzzleMatrix[i][j] === 0) {
+  //         const possibilities = this.getPossibilities(puzzleString, i, j);
+  //         if (possibilities.length === 0) return false;
+
+  //         for (let k = 0; k < possibilities.length; k++) {
+  //           const val = possibilities[k];
+
+  //           const updatedPuzzle = [...puzzleMatrix];
+  //           updatedPuzzle[i][j] = val;
+
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+  getNextEmpty(puzzleMatrix) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        // if ()
+        if (puzzleMatrix[i][j] === 0) return [i, j];
       }
     }
-    while (true) {}
+    return false;
+  }
+
+  solvePuzzle(puzzleMatrix) {
+    const nextEmpty = this.getNextEmpty(puzzleMatrix);
+    if (!nextEmpty) return puzzleMatrix;
+    const [i, j] = nextEmpty;
+
+    const puzzleString = puzzleMatrix.map((e) => e.join("")).join("");
+
+    const possibilities = this.getPossibilities(puzzleString, i, j);
+    // if (possibilities.length === 0) return false;
+
+    for (let k = 0; k < possibilities.length; k++) {
+      const val = possibilities[k];
+
+      const updatedPuzzle = [...puzzleMatrix];
+      updatedPuzzle[i][j] = val;
+
+      const result = this.solvePuzzle(updatedPuzzle);
+
+      if (result) {
+        return result;
+      }
+    }
+    return false;
   }
 
   solve(puzzleString) {
+    const puzzleMatrix = this.transform(puzzleString);
+
+    const solved = this.solvePuzzle(puzzleMatrix);
+
+    console.log({ solved });
+
     if (!solved) {
       return false;
     }
