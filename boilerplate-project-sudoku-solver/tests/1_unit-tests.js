@@ -17,14 +17,14 @@ suite("Unit Tests", () => {
       const puzzle =
         "..5..2.84..63.12.7.2..5.....9..1.-..8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
       const result = solver.validate(puzzle);
-      assert.isFalse(result);
+      assert.equal(result, "Invalid characters in puzzle");
     });
 
     test("less than 81 characters in length", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1.?..8.2.3674.3.7.2..9.47...8..1..16....926914.37";
       const result = solver.validate(puzzle);
-      assert.isFalse(result);
+      assert.equal(result, "Expected puzzle to be 81 characters long");
     });
   });
 
