@@ -79,9 +79,12 @@ suite("Unit Tests", () => {
   suite("solve", () => {
     test("valid puzzle", () => {
       const puzzle =
-        "135762984946381257728459613694517832812936745357824196473298561581673429269145378";
+        "..839.7.575.....964..1.......16.29846.9.312.7..754.....62..5.78.8...3.2...492...1";
       const result = solver.solve(puzzle);
-      assert.isTrue(result);
+      assert.equal(
+        result,
+        "218396745753284196496157832531672984649831257827549613962415378185763429374928561"
+      );
     });
 
     test("invalid puzzle", () => {
@@ -89,6 +92,16 @@ suite("Unit Tests", () => {
         ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
       const result = solver.solve(puzzle);
       assert.isFalse(result);
+    });
+
+    test("return solution for an incomplete puzzle", () => {
+      const puzzle =
+        "5..91372.3...8.5.9.9.25..8.68.47.23...95..46.7.4.....5.2.......4..8916..85.72...3";
+      const result = solver.solve(puzzle);
+      assert.equal(
+        result,
+        "568913724342687519197254386685479231219538467734162895926345178473891652851726943"
+      );
     });
   });
 });
