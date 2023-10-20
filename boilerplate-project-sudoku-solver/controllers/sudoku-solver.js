@@ -1,12 +1,12 @@
 class SudokuSolver {
   validate(puzzleString) {
     if (puzzleString.length !== 81)
-      return "Expected puzzle to be 81 characters long";
+      return { error: "Expected puzzle to be 81 characters long" };
 
     const regex = /^[0-9].*$/;
     const result = regex.test(puzzleString);
     if (!result) {
-      return "Invalid characters in puzzle";
+      return { error: "Invalid characters in puzzle" };
     }
     return result;
   }
