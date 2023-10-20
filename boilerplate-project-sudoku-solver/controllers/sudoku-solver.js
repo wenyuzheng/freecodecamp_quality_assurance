@@ -7,12 +7,12 @@ class SudokuSolver {
     return result;
   }
 
-  checkRowPlacement(puzzleString, row, column, value) {
+  checkRowPlacement(puzzleString, row, value) {
     const rowString = puzzleString.slice(row * 9, row * 9 + 9);
     return !rowString.includes(value);
   }
 
-  checkColPlacement(puzzleString, row, column, value) {
+  checkColPlacement(puzzleString, column, value) {
     const colArray = [];
     for (let i = 0; i < 9; i++) {
       colArray.push(puzzleString[9 * i + column]);
@@ -40,7 +40,25 @@ class SudokuSolver {
     return !regionArray.includes(value.toString());
   }
 
-  solve(puzzleString) {}
+  isSafeToPlace(puzzleString, row, column, value) {
+    return (
+      this.checkRowPlacement(puzzleString, row, value) &&
+      this.checkColPlacement(puzzleString, column, value) &&
+      this.checkRegionPlacement(puzzleString, row, column, value)
+    );
+  }
+
+  solvePuzzle(puzzleString) {
+    while (true) {}
+  }
+
+  solve(puzzleString) {
+    if (!solved) {
+      return false;
+    }
+
+    return solution;
+  }
 }
 
 module.exports = SudokuSolver;
