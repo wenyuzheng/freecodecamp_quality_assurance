@@ -57,7 +57,26 @@ class SudokuSolver {
     return possibilities;
   }
 
+  transform(puzzleString) {
+    const puzzleMatrix = [];
+    for (let i = 0; i < 9; i++) {
+      const rowArray = puzzleString
+        .slice(9 * i, 9 * i + 9)
+        .split("")
+        .map((e) => (e === "." ? 0 : parseInt(e)));
+      puzzleMatrix.push(rowArray);
+    }
+    return puzzleMatrix;
+  }
+
   solvePuzzle(puzzleString) {
+    const puzzleMatrix = transform(puzzleString);
+
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        // if ()
+      }
+    }
     while (true) {}
   }
 
