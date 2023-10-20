@@ -122,13 +122,13 @@ suite("Unit Tests", () => {
   });
 
   suite("solvePuzzle", () => {
-    // test("cannot solve", () => {
-    //   const puzzle =
-    //     ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
-    //   const puzzleMatrix = solver.transform(puzzle);
-    //   const result = solver.solvePuzzle(puzzleMatrix);
-    //   assert.isFalse(result);
-    // });
+    test("cannot solve", () => {
+      const puzzle =
+        ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+      const puzzleMatrix = solver.transform(puzzle);
+      const result = solver.solvePuzzle(puzzleMatrix);
+      assert.isFalse(result);
+    });
 
     test("can solve", () => {
       const puzzle =
