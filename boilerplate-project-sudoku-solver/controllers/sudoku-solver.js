@@ -48,6 +48,15 @@ class SudokuSolver {
     );
   }
 
+  getPossibilities(puzzleString, row, column) {
+    const possibilities = [];
+    for (let i = 1; i <= 9; i++) {
+      if (this.isSafeToPlace(puzzleString, row, column, i))
+        possibilities.push(i);
+    }
+    return possibilities;
+  }
+
   solvePuzzle(puzzleString) {
     while (true) {}
   }
