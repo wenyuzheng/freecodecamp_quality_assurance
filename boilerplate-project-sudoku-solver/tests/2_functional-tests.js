@@ -7,22 +7,22 @@ chai.use(chaiHttp);
 
 suite("Functional Tests", () => {
   suite("/api/solve", () => {
-    // test("return a solution with a valid puzzle", (done) => {
-    //   chai
-    //     .request(server)
-    //     .post("/api/solve")
-    //     .send({
-    //       puzzle:
-    //         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
-    //     })
-    //     .end((err, res) => {
-    //       assert.equal(
-    //         res.body,
-    //         "135762984946381257728459613694517832812936745357824196473298561581673429269145378"
-    //       );
-    //       done();
-    //     });
-    // });
+    test("return a solution with a valid puzzle", (done) => {
+      chai
+        .request(server)
+        .post("/api/solve")
+        .send({
+          puzzle:
+            "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+        })
+        .end((err, res) => {
+          assert.deepEqual(res.body, {
+            solution:
+              "135762984946381257728459613694517832812936745357824196473298561581673429269145378",
+          });
+          done();
+        });
+    });
 
     test("return an error with missing puzzle field", (done) => {
       chai

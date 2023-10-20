@@ -13,13 +13,13 @@ module.exports = function (app) {
     if (!puzzle) return res.json({ error: "Required field missing" });
 
     const validation = solver.validate(puzzle);
-    console.log({ validation });
     if (validation.hasOwnProperty("error")) {
       return res.json(validation);
     }
 
     const result = solver.solve(puzzle);
     if (!result) return res.json({ error: "Puzzle cannot be solved" });
-    else result;
+
+    return res.json({ solution: result });
   });
 };
