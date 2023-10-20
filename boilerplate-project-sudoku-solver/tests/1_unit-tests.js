@@ -121,48 +121,54 @@ suite("Unit Tests", () => {
     });
   });
 
-  // suite("solvePuzzle", () => {
-  //   test("cannot solve", () => {
-  //     const puzzle =
-  //       ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
-  //     const result = solver.solvePuzzle(puzzle);
-  //     assert.isFalse(result);
-  //   });
-
-  //   // test("solve", () => {
-  //   //   const puzzle =
-  //   //     ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
-  //   //   const result = solver.solvePuzzle(puzzle);
-  //   //   assert.isFalse(result);
-  //   // });
-  // });
-
-  suite("solve", () => {
-    test("valid puzzle", () => {
-      const puzzle =
-        "..839.7.575.....964..1.......16.29846.9.312.7..754.....62..5.78.8...3.2...492...1";
-      const result = solver.solve(puzzle);
-      assert.equal(
-        result,
-        "218396745753284196496157832531672984649831257827549613962415378185763429374928561"
-      );
-    });
-
-    // test("invalid puzzle", () => {
+  suite("solvePuzzle", () => {
+    // test("cannot solve", () => {
     //   const puzzle =
     //     ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
-    //   const result = solver.solve(puzzle);
+    //   const puzzleMatrix = solver.transform(puzzle);
+    //   const result = solver.solvePuzzle(puzzleMatrix);
     //   assert.isFalse(result);
     // });
 
-    // test("return solution for an incomplete puzzle", () => {
-    //   const puzzle =
-    //     "5..91372.3...8.5.9.9.25..8.68.47.23...95..46.7.4.....5.2.......4..8916..85.72...3";
-    //   const result = solver.solve(puzzle);
-    //   assert.equal(
-    //     result,
-    //     "568913724342687519197254386685479231219538467734162895926345178473891652851726943"
-    //   );
-    // });
+    test("can solve", () => {
+      const puzzle =
+        "..839.7.575.....964..1.......16.29846.9.312.7..754.....62..5.78.8...3.2...492...1";
+      const puzzleMatrix = solver.transform(puzzle);
+      const result = solver.solvePuzzle(puzzleMatrix);
+
+      const expected = solver.transform(
+        "218396745753284196496157832531672984649831257827549613962415378185763429374928561"
+      );
+      assert.deepEqual(result, expected);
+    });
   });
+
+  // suite("solve", () => {
+  //   test("valid puzzle", () => {
+  //     const puzzle =
+  //       "..839.7.575.....964..1.......16.29846.9.312.7..754.....62..5.78.8...3.2...492...1";
+  //     const result = solver.solve(puzzle);
+  //     assert.equal(
+  //       result,
+  //       "218396745753284196496157832531672984649831257827549613962415378185763429374928561"
+  //     );
+  //   });
+
+  // test("invalid puzzle", () => {
+  //   const puzzle =
+  //     ".7.897....5....3.4.2..4..1.5689..472...6.....1.7.5.63873.1.2.8.6..47.1..2.9.387.6";
+  //   const result = solver.solve(puzzle);
+  //   assert.isFalse(result);
+  // });
+
+  // test("return solution for an incomplete puzzle", () => {
+  //   const puzzle =
+  //     "5..91372.3...8.5.9.9.25..8.68.47.23...95..46.7.4.....5.2.......4..8916..85.72...3";
+  //   const result = solver.solve(puzzle);
+  //   assert.equal(
+  //     result,
+  //     "568913724342687519197254386685479231219538467734162895926345178473891652851726943"
+  //   );
+  // });
+  // });
 });

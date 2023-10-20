@@ -69,27 +69,6 @@ class SudokuSolver {
     return puzzleMatrix;
   }
 
-  // solvePuzzle(puzzleString) {
-  //   const puzzleMatrix = transform(puzzleString);
-
-  //   for (let i = 0; i < 9; i++) {
-  //     for (let j = 0; j < 9; j++) {
-  //       if (puzzleMatrix[i][j] === 0) {
-  //         const possibilities = this.getPossibilities(puzzleString, i, j);
-  //         if (possibilities.length === 0) return false;
-
-  //         for (let k = 0; k < possibilities.length; k++) {
-  //           const val = possibilities[k];
-
-  //           const updatedPuzzle = [...puzzleMatrix];
-  //           updatedPuzzle[i][j] = val;
-
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
   getNextEmpty(puzzleMatrix) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -105,20 +84,16 @@ class SudokuSolver {
     const [i, j] = nextEmpty;
 
     const puzzleString = puzzleMatrix.map((e) => e.join("")).join("");
-
     const possibilities = this.getPossibilities(puzzleString, i, j);
-    // if (possibilities.length === 0) return false;
 
     for (let k = 0; k < possibilities.length; k++) {
-      const val = possibilities[k];
+      puzzleMatrix[i][j] = possibilities[k];
 
-      const updatedPuzzle = [...puzzleMatrix];
-      updatedPuzzle[i][j] = val;
-
-      const result = this.solvePuzzle(updatedPuzzle);
-
+      const result = this.solvePuzzle(puzzleMatrix);
       if (result) {
         return result;
+      } else {
+        puzzleMatrix[i][j] = 0;
       }
     }
     return false;
