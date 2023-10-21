@@ -257,20 +257,20 @@ suite("Functional Tests", () => {
         });
     });
 
-    // test("return an error with incorrect input number", (done) => {
-    //   chai
-    //     .request(server)
-    //     .post("/api/check")
-    //     .send({
-    //       puzzle:
-    //         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
-    //       coordinate: "A1",
-    //       value: 0,
-    //     })
-    //     .end((err, res) => {
-    //       assert.deepEqual(res.body, { error: "Invalid value" });
-    //       done();
-    //     });
-    // });
+    test("return an error with incorrect input number", (done) => {
+      chai
+        .request(server)
+        .post("/api/check")
+        .send({
+          puzzle:
+            "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+          coordinate: "A1",
+          value: 0,
+        })
+        .end((err, res) => {
+          assert.deepEqual(res.body, { error: "Invalid value" });
+          done();
+        });
+    });
   });
 });

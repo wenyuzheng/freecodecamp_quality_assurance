@@ -22,6 +22,10 @@ module.exports = function (app) {
     if (invalidRow || invalidCol) {
       return res.json({ error: "Invalid coordinate" });
     }
+
+    if (value <= 0 || value > 9) {
+      return res.json({ error: "Invalid value" });
+    }
   });
 
   app.route("/api/solve").post((req, res) => {
