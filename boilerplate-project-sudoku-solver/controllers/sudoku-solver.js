@@ -11,16 +11,18 @@ class SudokuSolver {
     return result;
   }
 
-  checkRowPlacement(puzzleString, row, value) {
+  checkRowPlacement(puzzleString, row, column, value) {
     const rowString = puzzleString.slice(row * 9, row * 9 + 9);
+    if (rowString[column] === value) return true;
     return !rowString.includes(value);
   }
 
-  checkColPlacement(puzzleString, column, value) {
+  checkColPlacement(puzzleString, row, column, value) {
     const colArray = [];
     for (let i = 0; i < 9; i++) {
       colArray.push(puzzleString[9 * i + column]);
     }
+    if (colArray[row] === value.toString()) return true;
     return !colArray.includes(value.toString());
   }
 
@@ -41,13 +43,14 @@ class SudokuSolver {
       }
     }
 
+    if (regionArray[row * 3 + column] === value.toString()) return true;
     return !regionArray.includes(value.toString());
   }
 
   isSafeToPlace(puzzleString, row, column, value) {
     return (
-      this.checkRowPlacement(puzzleString, row, value) &&
-      this.checkColPlacement(puzzleString, column, value) &&
+      this.checkRowPlacement(puzzleString, row, column, value) &&
+      this.checkColPlacement(puzzleString, row, column, value) &&
       this.checkRegionPlacement(puzzleString, row, column, value)
     );
   }

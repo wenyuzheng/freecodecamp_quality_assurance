@@ -34,14 +34,21 @@ suite("Unit Tests", () => {
     test("valid row placement", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
-      const result = solver.checkRowPlacement(puzzle, 0, 3);
+      const result = solver.checkRowPlacement(puzzle, 0, 1, 3);
+      assert.isTrue(result);
+    });
+
+    test("valid row placement on occupied place", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.checkRowPlacement(puzzle, 0, 2, 3);
       assert.isTrue(result);
     });
 
     test("invalid row placement", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
-      const result = solver.checkRowPlacement(puzzle, 0, 1);
+      const result = solver.checkRowPlacement(puzzle, 0, 1, 1);
       assert.isFalse(result);
     });
   });
@@ -50,14 +57,21 @@ suite("Unit Tests", () => {
     test("valid column placement", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
-      const result = solver.checkColPlacement(puzzle, 1, 3);
+      const result = solver.checkColPlacement(puzzle, 0, 1, 3);
+      assert.isTrue(result);
+    });
+
+    test("valid column placement on occupied place", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.checkColPlacement(puzzle, 0, 0, 1);
       assert.isTrue(result);
     });
 
     test("invalid column placement", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
-      const result = solver.checkColPlacement(puzzle, 3, 3);
+      const result = solver.checkColPlacement(puzzle, 0, 3, 3);
       assert.isFalse(result);
     });
   });
@@ -67,6 +81,13 @@ suite("Unit Tests", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
       const result = solver.checkRegionPlacement(puzzle, 0, 1, 3);
+      assert.isTrue(result);
+    });
+
+    test("valid region placement on occupied place", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.checkRegionPlacement(puzzle, 0, 0, 1);
       assert.isTrue(result);
     });
 
@@ -83,6 +104,13 @@ suite("Unit Tests", () => {
       const puzzle =
         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
       const result = solver.isSafeToPlace(puzzle, 0, 1, 3);
+      assert.isTrue(result);
+    });
+
+    test("valid placement on occupied place", () => {
+      const puzzle =
+        "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.";
+      const result = solver.checkRegionPlacement(puzzle, 0, 0, 1);
       assert.isTrue(result);
     });
 
