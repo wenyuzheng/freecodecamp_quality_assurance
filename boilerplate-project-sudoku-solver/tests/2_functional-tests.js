@@ -3,6 +3,9 @@ const chaiHttp = require("chai-http");
 const assert = chai.assert;
 const server = require("../server");
 
+const testPuzzles =
+  require("../controllers/puzzle-strings").puzzlesAndSolutions;
+
 chai.use(chaiHttp);
 
 suite("Functional Tests", () => {
@@ -12,14 +15,30 @@ suite("Functional Tests", () => {
         .request(server)
         .post("/api/solve")
         .send({
-          puzzle:
-            "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+          puzzle: testPuzzles[4][0],
         })
         .end((err, res) => {
           assert.deepEqual(res.body, {
-            solution:
-              "135762984946381257728459613694517832812936745357824196473298561581673429269145378",
+            solution: testPuzzles[4][1],
           });
+          done();
+        });
+    });
+
+    test("return a solution with a valid puzzle", (done) => {
+      chai
+        .request(server)
+        .post("/api/solve")
+        .send({
+          puzzle:
+            "135762984946381257728459613694517832812936745357824196473298561581673429269145378",
+        })
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(
+            res.body.solution,
+            "135762984946381257728459613694517832812936745357824196473298561581673429269145378"
+          );
           done();
         });
     });
@@ -236,8 +255,8 @@ suite("Functional Tests", () => {
         .send({
           puzzle:
             "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
-          coordinate: "A",
-          value: 0,
+          coordinate: "a",
+          value: 1,
         })
         .end((err, res) => {
           assert.deepEqual(res.body, { error: "Invalid coordinate" });
@@ -252,8 +271,8 @@ suite("Functional Tests", () => {
         .send({
           puzzle:
             "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
-          coordinate: "K1",
-          value: 0,
+          coordinate: "K11",
+          value: 1,
         })
         .end((err, res) => {
           assert.deepEqual(res.body, { error: "Invalid coordinate" });
@@ -269,7 +288,7 @@ suite("Functional Tests", () => {
           puzzle:
             "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
           coordinate: "A1",
-          value: 0,
+          value: "add",
         })
         .end((err, res) => {
           assert.deepEqual(res.body, { error: "Invalid value" });

@@ -15,21 +15,18 @@ module.exports = function (app) {
       return res.json(validation);
     }
 
-    const [row, col] = coordinate.split("");
-    const invalidRow =
-      !row || row.toUpperCase() < "A" || row.toUpperCase() >= "I";
-    const invalidCol = !col || col <= 0 || col > 9;
-
-    if (invalidRow || invalidCol) {
+    const validCoord = /^([A-Ia-i])([1-9])$/;
+    if (!validCoord.test(coordinate)) {
       return res.json({ error: "Invalid coordinate" });
     }
+    const [_, row, col] = coordinate.match(validCoord);
 
-    if (value <= 0 || value > 9) {
+    if (!/^[1-9]$/.test(value)) {
       return res.json({ error: "Invalid value" });
     }
 
     const alphabet = "ABCDEFGHI";
-    const rowInNum = alphabet.indexOf(row);
+    const rowInNum = alphabet.indexOf(row.toUpperCase());
     const colInNum = col - 1;
 
     const conflict = [];
