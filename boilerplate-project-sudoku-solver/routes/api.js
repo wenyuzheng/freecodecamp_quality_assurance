@@ -32,18 +32,18 @@ module.exports = function (app) {
     const rowInNum = alphabet.indexOf(row);
     const colInNum = col - 1;
 
-    const conflicts = [];
+    const conflict = [];
 
     if (!solver.checkRowPlacement(puzzle, rowInNum, value))
-      conflicts.push("row");
+      conflict.push("row");
     if (!solver.checkColPlacement(puzzle, colInNum, value))
-      conflicts.push("column");
+      conflict.push("column");
     if (!solver.checkRegionPlacement(puzzle, rowInNum, colInNum, value))
-      conflicts.push("region");
+      conflict.push("region");
 
-    console.log({ conflicts });
+    console.log({ conflict });
 
-    if (conflicts.length !== 0) return res.json({ valid: false, conflicts });
+    if (conflict.length !== 0) return res.json({ valid: false, conflict });
 
     return res.json({ valid: true });
   });
