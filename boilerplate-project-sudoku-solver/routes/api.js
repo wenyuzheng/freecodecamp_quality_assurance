@@ -16,7 +16,8 @@ module.exports = function (app) {
     }
 
     const [row, col] = coordinate.split("");
-    const invalidRow = !row || row < "A" || row >= "I";
+    const invalidRow =
+      !row || row.toUpperCase() < "A" || row.toUpperCase() >= "I";
     const invalidCol = !col || col <= 0 || col > 9;
 
     if (invalidRow || invalidCol) {
@@ -27,10 +28,17 @@ module.exports = function (app) {
       return res.json({ error: "Invalid value" });
     }
 
+    const alphabet = "ABCDEFGHI";
+    const rowInNum = alphabet.indexOf(row);
+    const colInNum = col - 1;
+
     const conflicts = [];
-    if (solver.checkRowPlacement(puzzle, row, value)) conflicts.push("row");
-    if (solver.checkColPlacement(puzzle, col, value)) conflicts.push("column");
-    if (solver.checkRegionPlacement(puzzle, row, col, value))
+
+    if (!solver.checkRowPlacement(puzzle, rowInNum, value))
+      conflicts.push("row");
+    if (!solver.checkColPlacement(puzzle, colInNum, value))
+      conflicts.push("column");
+    if (!solver.checkRegionPlacement(puzzle, rowInNum, colInNum, value))
       conflicts.push("region");
 
     console.log({ conflicts });
