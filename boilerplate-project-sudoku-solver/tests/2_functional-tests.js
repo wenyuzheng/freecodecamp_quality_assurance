@@ -164,11 +164,15 @@ suite("Functional Tests", () => {
         });
     });
 
-    test("return an error with missing puzzle field", (done) => {
+    test("return an error with missing fields", (done) => {
       chai
         .request(server)
         .post("/api/check")
-        .send({})
+        .send({
+          puzzle:
+            "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+          coordinate: "A2",
+        })
         .end((err, res) => {
           assert.deepEqual(res.body, { error: "Required field(s) missing" });
           done();
