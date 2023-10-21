@@ -16,8 +16,12 @@ module.exports = function (app) {
     }
 
     const [row, col] = coordinate.split("");
+    const invalidRow = !row || row < "A" || row >= "I";
+    const invalidCol = !col || col <= 0 || col > 9;
 
-    console.log({ row, col });
+    if (invalidRow || invalidCol) {
+      return res.json({ error: "Invalid coordinate" });
+    }
   });
 
   app.route("/api/solve").post((req, res) => {
