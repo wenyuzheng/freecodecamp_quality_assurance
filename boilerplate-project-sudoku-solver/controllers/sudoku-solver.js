@@ -13,7 +13,7 @@ class SudokuSolver {
 
   checkRowPlacement(puzzleString, row, column, value) {
     const rowString = puzzleString.slice(row * 9, row * 9 + 9);
-    if (rowString[column] === value) return true;
+    if (rowString[column] === value.toString()) return true;
     return !rowString.includes(value);
   }
 
@@ -22,6 +22,7 @@ class SudokuSolver {
     for (let i = 0; i < 9; i++) {
       colArray.push(puzzleString[9 * i + column]);
     }
+
     if (colArray[row] === value.toString()) return true;
     return !colArray.includes(value.toString());
   }

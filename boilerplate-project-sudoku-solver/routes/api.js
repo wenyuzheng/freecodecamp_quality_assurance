@@ -33,18 +33,14 @@ module.exports = function (app) {
     const colInNum = col - 1;
 
     const conflict = [];
-
-    if (!solver.checkRowPlacement(puzzle, rowInNum, value))
+    if (!solver.checkRowPlacement(puzzle, rowInNum, colInNum, value))
       conflict.push("row");
-    if (!solver.checkColPlacement(puzzle, colInNum, value))
+    if (!solver.checkColPlacement(puzzle, rowInNum, colInNum, value))
       conflict.push("column");
     if (!solver.checkRegionPlacement(puzzle, rowInNum, colInNum, value))
       conflict.push("region");
 
-    console.log({ conflict });
-
     if (conflict.length !== 0) return res.json({ valid: false, conflict });
-
     return res.json({ valid: true });
   });
 
