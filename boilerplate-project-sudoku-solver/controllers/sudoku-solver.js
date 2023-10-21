@@ -25,6 +25,7 @@ class SudokuSolver {
   }
 
   checkRegionPlacement(puzzleString, row, column, value) {
+    console.log({ puzzleString, row, column, value });
     const puzzleArray = [];
     for (let i = 0; i < 9; i++) {
       puzzleArray.push(puzzleString.slice(9 * i, 9 * i + 9));

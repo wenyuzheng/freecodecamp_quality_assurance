@@ -26,6 +26,18 @@ module.exports = function (app) {
     if (value <= 0 || value > 9) {
       return res.json({ error: "Invalid value" });
     }
+
+    const conflicts = [];
+    if (solver.checkRowPlacement(puzzle, row, value)) conflicts.push("row");
+    if (solver.checkColPlacement(puzzle, col, value)) conflicts.push("column");
+    if (solver.checkRegionPlacement(puzzle, row, col, value))
+      conflicts.push("region");
+
+    console.log({ conflicts });
+
+    if (conflicts.length !== 0) return res.json({ valid: false, conflicts });
+
+    return res.json({ valid: true });
   });
 
   app.route("/api/solve").post((req, res) => {

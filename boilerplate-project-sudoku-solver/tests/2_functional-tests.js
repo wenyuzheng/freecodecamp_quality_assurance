@@ -81,21 +81,21 @@ suite("Functional Tests", () => {
   });
 
   suite("/api/check", () => {
-    // test("valid placement", (done) => {
-    //   chai
-    //     .request(server)
-    //     .post("/api/check")
-    //     .send({
-    //       puzzle:
-    //         "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
-    //       coordinate: "A2",
-    //       value: 3,
-    //     })
-    //     .end((err, res) => {
-    //       assert.deepEqual(res.body, { valid: true });
-    //       done();
-    //     });
-    // });
+    test("valid placement", (done) => {
+      chai
+        .request(server)
+        .post("/api/check")
+        .send({
+          puzzle:
+            "1.5..2.84..63.12.7.2..5.....9..1....8.2.3674.3.7.2..9.47...8..1..16....926914.37.",
+          coordinate: "A2",
+          value: 3,
+        })
+        .end((err, res) => {
+          assert.deepEqual(res.body, { valid: true });
+          done();
+        });
+    });
 
     // test("invalid placement - conflict in row", (done) => {
     //   chai
