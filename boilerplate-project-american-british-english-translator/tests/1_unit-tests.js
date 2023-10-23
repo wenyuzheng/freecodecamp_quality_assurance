@@ -77,75 +77,75 @@ suite("Unit Tests", () => {
     });
   });
 
-  //   suite("Translate to American", () => {
-  //     test("Eg1", () => {
-  //       const text = "We watched the footie match for a while.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "We watched the soccer match for a while.";
-  //       assert.equal(result, expected);
-  //     });
+  suite("Translate to American", () => {
+    test("Eg1", () => {
+      const text = "We watched the footie match for a while.";
+      const result = translator.toAmerican(text);
+      const expected = "We watched the soccer match for a while.";
+      assert.equal(result, expected);
+    });
 
-  //     test("Eg2", () => {
-  //       const text = "Paracetamol takes up to an hour to work.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "Tylenol takes up to an hour to work.";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg2", () => {
+    //   const text = "Paracetamol takes up to an hour to work.";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "Tylenol takes up to an hour to work.";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg3", () => {
-  //       const text = "First, caramelise the onions.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "First, caramelize the onions.";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg3", () => {
+    //   const text = "First, caramelise the onions.";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "First, caramelize the onions.";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg4", () => {
-  //       const text = "I spent the bank holiday at the funfair.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "I spent the public holiday at the carnival.";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg4", () => {
+    //   const text = "I spent the bank holiday at the funfair.";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "I spent the public holiday at the carnival.";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg5", () => {
-  //       const text = "I had a bicky then went to the chippy.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "I had a cookie then went to the fish-and-chip shop.";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg5", () => {
+    //   const text = "I had a bicky then went to the chippy.";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "I had a cookie then went to the fish-and-chip shop.";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg6", () => {
-  //       const text = "I've just got bits and bobs in my bum bag.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "I've just got odds and ends in my fanny pack.";
-  //       assert.equal(result, expected);
-  //     });
+    test("Eg6", () => {
+      const text = "I've just got bits and bobs in my bum bag.";
+      const result = translator.toAmerican(text);
+      const expected = "I've just got odds and ends in my fanny pack.";
+      assert.equal(result, expected);
+    });
 
-  //     test("Eg7", () => {
-  //       const text = "The car boot sale at Boxted Airfield was called off.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "The swap meet at Boxted Airfield was called off.";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg7", () => {
+    //   const text = "The car boot sale at Boxted Airfield was called off.";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "The swap meet at Boxted Airfield was called off.";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg8", () => {
-  //       const text = "Have you met Mrs Kalyani?";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "Have you met Mrs. Kalyani?";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg8", () => {
+    //   const text = "Have you met Mrs Kalyani?";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "Have you met Mrs. Kalyani?";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg9", () => {
-  //       const text = "Prof Joyner of King's College, London.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "Prof. Joyner of King's College, London.";
-  //       assert.equal(result, expected);
-  //     });
+    // test("Eg9", () => {
+    //   const text = "Prof Joyner of King's College, London.";
+    //   const result = translator.toAmerican(text);
+    //   const expected = "Prof. Joyner of King's College, London.";
+    //   assert.equal(result, expected);
+    // });
 
-  //     test("Eg10", () => {
-  //       const text = "Tea time is usually around 4 or 4.30.";
-  //       const result = translator.toAmerican(text);
-  //       const expected = "Tea time is usually around 4 or 4:30.";
-  //       assert.equal(result, expected);
-  //     });
-  //   });
+    test("Eg10", () => {
+      const text = "Tea time is usually around 4 or 4.30.";
+      const result = translator.toAmerican(text);
+      const expected = "Tea time is usually around 4 or 4:30.";
+      assert.equal(result, expected);
+    });
+  });
 });

@@ -48,7 +48,49 @@ class Translator {
     return translated;
   }
 
-  toAmerican(text) {}
+  toAmerican(text) {
+    let punctuation = "";
+    const lastChar = text[text.length - 1];
+    if (!/[a-zA-Z]/.test(lastChar)) {
+      punctuation = lastChar;
+      text = text.slice(0, -1);
+    }
+
+    const words = text.split(" ");
+    const convertedWords = words.map((w) => {
+      console.log({ w });
+
+      //   if (americanToBritishSpelling[w]) {
+      //     return americanToBritishSpelling[w];
+      //   }
+
+      if (britishOnly[w]) {
+        return britishOnly[w];
+      }
+
+      //   if (americanToBritishTitles[w.toLowerCase()]) {
+      //     const convertedTitle = americanToBritishTitles[w.toLowerCase()];
+      //     return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
+      //   }
+
+      if (/[0-9]+.[0-9]{2}/.test(w)) {
+        return w.replace(".", ":");
+      }
+
+      return w;
+    });
+
+    text = convertedWords.join(" ");
+
+    Object.keys(britishOnly).forEach((key) => {
+      if (text.toLowerCase().includes(key)) {
+        text = text.toLowerCase().replace(key, britishOnly[key]);
+      }
+    });
+
+    const translated = text[0].toUpperCase() + text.slice(1) + punctuation;
+    return translated;
+  }
 }
 
 module.exports = Translator;
