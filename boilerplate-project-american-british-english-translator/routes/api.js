@@ -20,7 +20,7 @@ module.exports = function (app) {
       return res.json({ error: "No text to translate" });
     }
 
-    if (locale !== toBritishLocale || locale !== toAmericanLocale) {
+    if (locale !== toBritishLocale && locale !== toAmericanLocale) {
       return res.json({ error: "Invalid value for locale field" });
     }
 
@@ -28,6 +28,8 @@ module.exports = function (app) {
       locale === toBritishLocale
         ? translator.toBritish(text)
         : translator.toAmerican(text);
+
+    console.log({ translation });
 
     if (translation === text) {
       translation = "Everything looks good to me!";
