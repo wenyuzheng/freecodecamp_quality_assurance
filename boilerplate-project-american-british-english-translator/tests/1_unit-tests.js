@@ -92,26 +92,26 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg3", () => {
-    //   const text = "First, caramelise the onions.";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "First, caramelize the onions.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg3", () => {
+      const text = "First, caramelise the onions.";
+      const result = translator.toAmerican(text);
+      const expected = "First, caramelize the onions.";
+      assert.equal(result, expected);
+    });
 
-    // test("Eg4", () => {
-    //   const text = "I spent the bank holiday at the funfair.";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "I spent the public holiday at the carnival.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg4", () => {
+      const text = "I spent the bank holiday at the funfair.";
+      const result = translator.toAmerican(text);
+      const expected = "I spent the public holiday at the carnival.";
+      assert.equal(result, expected);
+    });
 
-    // test("Eg5", () => {
-    //   const text = "I had a bicky then went to the chippy.";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "I had a cookie then went to the fish-and-chip shop.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg5", () => {
+      const text = "I had a bicky then went to the chippy.";
+      const result = translator.toAmerican(text);
+      const expected = "I had a cookie then went to the fish-and-chip shop.";
+      assert.equal(result, expected);
+    });
 
     test("Eg6", () => {
       const text = "I've just got bits and bobs in my bum bag.";

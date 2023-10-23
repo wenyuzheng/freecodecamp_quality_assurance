@@ -58,9 +58,9 @@ class Translator {
     const convertedWords = words.map((w) => {
       console.log({ w });
 
-      //   if (Object.values(americanToBritishSpelling).includes(w)) {
-      //     return getKeyByValue(americanToBritishSpelling, w);
-      //   }
+      if (Object.values(americanToBritishSpelling).includes(w)) {
+        return this.getKeyByValue(americanToBritishSpelling, w);
+      }
 
       if (britishOnly[w]) {
         return britishOnly[w];
@@ -89,7 +89,6 @@ class Translator {
           : index + key.length + 1;
 
       const phraseWithSpace = text.slice(startIndex, endIndex);
-      console.log({ phraseWithSpace });
 
       const isStartValid = index === 0 ? true : /^\s/.test(phraseWithSpace);
       const isEndValid =
