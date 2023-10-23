@@ -38,13 +38,15 @@ class Translator {
     text = convertedWords.join(" ");
 
     Object.keys(americanOnly).forEach((key) => {
-      console.log({ key }, text.includes(key));
-      if (text.includes(key)) {
-        text = text.replace(key, americanOnly[key]);
+      console.log({ key }, text.toLowerCase().includes(key));
+      if (text.toLowerCase().includes(key)) {
+        text = text.toLowerCase().replace(key, americanOnly[key]);
       }
     });
 
-    const translated = text + punctuation;
+    console.log({ text });
+
+    const translated = text[0].toUpperCase() + text.slice(1) + punctuation;
     return translated;
   }
 

@@ -41,12 +41,12 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg6", () => {
-    //   const text = "Like a high tech Rube Goldberg machine.";
-    //   const result = translator.toBritish(text);
-    //   const expected = "Like a high tech Heath Robinson device.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg6", () => {
+      const text = "Like a high tech Rube Goldberg machine.";
+      const result = translator.toBritish(text);
+      const expected = "Like a high tech Heath Robinson device.";
+      assert.equal(result, expected);
+    });
 
     test("Eg7", () => {
       const text = "To play hooky means to skip class or work.";
