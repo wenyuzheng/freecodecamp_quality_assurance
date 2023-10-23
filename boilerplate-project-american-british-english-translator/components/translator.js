@@ -99,7 +99,10 @@ class Translator {
       if (isStartValid && isEndValid) {
         if (text.toLowerCase().includes(key)) {
           console.log({ key }, britishOnly[key]);
-          text = text.toLowerCase().replace(key, britishOnly[key]);
+          const s = text.slice(0, index);
+          const e = text.slice(index + key.length);
+
+          text = s + britishOnly[key] + e;
         }
       }
     });

@@ -120,12 +120,12 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg7", () => {
-    //   const text = "The car boot sale at Boxted Airfield was called off.";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "The swap meet at Boxted Airfield was called off.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg7", () => {
+      const text = "The car boot sale at Boxted Airfield was called off.";
+      const result = translator.toAmerican(text);
+      const expected = "The swap meet at Boxted Airfield was called off.";
+      assert.equal(result, expected);
+    });
 
     // test("Eg8", () => {
     //   const text = "Have you met Mrs Kalyani?";
