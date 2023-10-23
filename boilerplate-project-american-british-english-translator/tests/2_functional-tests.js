@@ -87,22 +87,22 @@ suite("Functional Tests", () => {
         });
     });
 
-    // test("With text no need translation", (done) => {
-    //   chai
-    //     .request(server)
-    //     .post("/api/translate")
-    //     .send({
-    //       text: "",
-    //       locale: "american-to-british",
-    //     })
-    //     .end((err, res) => {
-    //       assert.equal(res.status, 200);
-    //       assert.deepEqual(res.body, {
-    //         text: "Mangoes are my favorite fruit.",
-    //         translation: "Everything looks good to me!",
-    //       });
-    //       done();
-    //     });
-    // });
+    test("With text no need translation", (done) => {
+      chai
+        .request(server)
+        .post("/api/translate")
+        .send({
+          text: "Mangoes are my favourite fruit.",
+          locale: "american-to-british",
+        })
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.deepEqual(res.body, {
+            text: "Mangoes are my favourite fruit.",
+            translation: "Everything looks good to me!",
+          });
+          done();
+        });
+    });
   });
 });
