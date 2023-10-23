@@ -34,12 +34,12 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg5", () => {
-    //   const text = "The parking lot was full.";
-    //   const result = translator.toBritish(text);
-    //   const expected = "The car park was full.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg5", () => {
+      const text = "The parking lot was full.";
+      const result = translator.toBritish(text);
+      const expected = "The car park was full.";
+      assert.equal(result, expected);
+    });
 
     // test("Eg6", () => {
     //   const text = "Like a high tech Rube Goldberg machine.";
@@ -48,12 +48,12 @@ suite("Unit Tests", () => {
     //   assert.equal(result, expected);
     // });
 
-    // test("Eg7", () => {
-    //   const text = "To play hooky means to skip class or work.";
-    //   const result = translator.toBritish(text);
-    //   const expected = "To bunk off means to skip class or work.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg7", () => {
+      const text = "To play hooky means to skip class or work.";
+      const result = translator.toBritish(text);
+      const expected = "To bunk off means to skip class or work.";
+      assert.equal(result, expected);
+    });
 
     // test("Eg8", () => {
     //   const text = "No Mr. Bond, I expect you to die.";

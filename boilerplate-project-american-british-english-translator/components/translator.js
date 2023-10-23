@@ -11,30 +11,40 @@ class Translator {
       punctuation = lastChar;
       text = text.slice(0, -1);
     }
+
     const words = text.split(" ");
-    console.log({ punctuation, words });
+    console.log({ text, punctuation, words });
 
     const convertedWords = words.map((w) => {
       console.log({ w });
-
-      if (americanOnly[w]) {
-        console.log(americanOnly[w]);
-        return americanOnly[w];
-      }
 
       if (americanToBritishSpelling[w]) {
         console.log(americanToBritishSpelling[w]);
         return americanToBritishSpelling[w];
       }
 
-      if (americanToBritishTitles[w]) {
-        console.log(americanToBritishTitles[w]);
-        return americanToBritishTitles[w];
+      if (americanOnly[w]) {
+        console.log(americanOnly[w]);
+        return americanOnly[w];
       }
+
+      //   if (americanToBritishTitles[w]) {
+      //       console.log(americanToBritishTitles[w]);
+      //       return americanToBritishTitles[w];
+      //     }
       return w;
     });
 
-    const translated = convertedWords.join(" ") + punctuation;
+    text = convertedWords.join(" ");
+
+    Object.keys(americanOnly).forEach((key) => {
+      console.log({ key }, text.includes(key));
+      if (text.includes(key)) {
+        text = text.replace(key, americanOnly[key]);
+      }
+    });
+
+    const translated = text + punctuation;
     return translated;
   }
 
