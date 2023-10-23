@@ -13,18 +13,14 @@ class Translator {
     }
 
     const words = text.split(" ");
-    console.log({ text, punctuation, words });
-
     const convertedWords = words.map((w) => {
       console.log({ w });
 
       if (americanToBritishSpelling[w]) {
-        console.log(americanToBritishSpelling[w]);
         return americanToBritishSpelling[w];
       }
 
       if (americanOnly[w]) {
-        console.log(americanOnly[w]);
         return americanOnly[w];
       }
 
@@ -32,19 +28,21 @@ class Translator {
         const convertedTitle = americanToBritishTitles[w.toLowerCase()];
         return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
       }
+
+      if (/[0-9]+:[0-9]{2}/.test(w)) {
+        return w.replace(":", ".");
+      }
+
       return w;
     });
 
     text = convertedWords.join(" ");
 
     Object.keys(americanOnly).forEach((key) => {
-      //   console.log({ key }, text.toLowerCase().includes(key));
       if (text.toLowerCase().includes(key)) {
         text = text.toLowerCase().replace(key, americanOnly[key]);
       }
     });
-
-    console.log({ text });
 
     const translated = text[0].toUpperCase() + text.slice(1) + punctuation;
     return translated;

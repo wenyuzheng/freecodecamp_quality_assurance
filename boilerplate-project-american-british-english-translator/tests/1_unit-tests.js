@@ -69,12 +69,12 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg10", () => {
-    //   const text = "Lunch is at 12:15 today.";
-    //   const result = translator.toBritish(text);
-    //   const expected = "Lunch is at 12.15 today.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg10", () => {
+      const text = "Lunch is at 12:15 today.";
+      const result = translator.toBritish(text);
+      const expected = "Lunch is at 12.15 today.";
+      assert.equal(result, expected);
+    });
   });
 
   //   suite("Translate to American", () => {
