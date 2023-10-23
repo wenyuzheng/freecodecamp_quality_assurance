@@ -36,9 +36,34 @@ class Translator {
 
     text = convertedWords.join(" ");
 
+    // Object.keys(americanOnly).forEach((key) => {
+    //   if (text.toLowerCase().includes(key)) {
+    //     text = text.toLowerCase().replace(key, americanOnly[key]);
+    //   }
+    // });
+
     Object.keys(americanOnly).forEach((key) => {
-      if (text.toLowerCase().includes(key)) {
-        text = text.toLowerCase().replace(key, americanOnly[key]);
+      const index = text.toLowerCase().indexOf(key);
+      const startIndex = index === 0 ? 0 : index - 1;
+      const endIndex =
+        index + key.length === text.length
+          ? text.length
+          : index + key.length + 1;
+
+      const phraseWithSpace = text.slice(startIndex, endIndex);
+
+      const isStartValid = index === 0 ? true : /^\s/.test(phraseWithSpace);
+      const isEndValid =
+        index + key.length === text.length
+          ? true
+          : phraseWithSpace.endsWith(" ");
+
+      if (isStartValid && isEndValid) {
+        if (text.toLowerCase().includes(key)) {
+          const s = text.slice(0, index);
+          const e = text.slice(index + key.length);
+          text = s + americanOnly[key] + e;
+        }
       }
     });
 
