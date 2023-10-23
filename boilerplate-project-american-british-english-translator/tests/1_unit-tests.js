@@ -85,12 +85,12 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg2", () => {
-    //   const text = "Paracetamol takes up to an hour to work.";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "Tylenol takes up to an hour to work.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg2", () => {
+      const text = "Paracetamol takes up to an hour to work.";
+      const result = translator.toAmerican(text);
+      const expected = "Tylenol takes up to an hour to work.";
+      assert.equal(result, expected);
+    });
 
     // test("Eg3", () => {
     //   const text = "First, caramelise the onions.";

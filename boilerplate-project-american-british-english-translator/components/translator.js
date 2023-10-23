@@ -14,8 +14,6 @@ class Translator {
 
     const words = text.split(" ");
     const convertedWords = words.map((w) => {
-      console.log({ w });
-
       if (americanToBritishSpelling[w]) {
         return americanToBritishSpelling[w];
       }
@@ -60,8 +58,8 @@ class Translator {
     const convertedWords = words.map((w) => {
       console.log({ w });
 
-      //   if (americanToBritishSpelling[w]) {
-      //     return americanToBritishSpelling[w];
+      //   if (Object.values(americanToBritishSpelling).includes(w)) {
+      //     return getKeyByValue(americanToBritishSpelling, w);
       //   }
 
       if (britishOnly[w]) {
@@ -83,13 +81,36 @@ class Translator {
     text = convertedWords.join(" ");
 
     Object.keys(britishOnly).forEach((key) => {
-      if (text.toLowerCase().includes(key)) {
-        text = text.toLowerCase().replace(key, britishOnly[key]);
+      const index = text.toLowerCase().indexOf(key);
+      const startIndex = index === 0 ? 0 : index - 1;
+      const endIndex =
+        index + key.length === text.length
+          ? text.length
+          : index + key.length + 1;
+
+      const phraseWithSpace = text.slice(startIndex, endIndex);
+      console.log({ phraseWithSpace });
+
+      const isStartValid = index === 0 ? true : /^\s/.test(phraseWithSpace);
+      const isEndValid =
+        index + key.length === text.length
+          ? true
+          : phraseWithSpace.endsWith(" ");
+
+      if (isStartValid && isEndValid) {
+        if (text.toLowerCase().includes(key)) {
+          console.log({ key }, britishOnly[key]);
+          text = text.toLowerCase().replace(key, britishOnly[key]);
+        }
       }
     });
 
     const translated = text[0].toUpperCase() + text.slice(1) + punctuation;
     return translated;
+  }
+
+  getKeyByValue(object, value) {
+    return Object.keys(object).find((key) => object[key] === value);
   }
 }
 
