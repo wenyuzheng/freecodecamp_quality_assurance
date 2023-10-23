@@ -127,19 +127,19 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg8", () => {
-    //   const text = "Have you met Mrs Kalyani?";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "Have you met Mrs. Kalyani?";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg8", () => {
+      const text = "Have you met Mrs Kalyani?";
+      const result = translator.toAmerican(text);
+      const expected = "Have you met Mrs. Kalyani?";
+      assert.equal(result, expected);
+    });
 
-    // test("Eg9", () => {
-    //   const text = "Prof Joyner of King's College, London.";
-    //   const result = translator.toAmerican(text);
-    //   const expected = "Prof. Joyner of King's College, London.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg9", () => {
+      const text = "Prof Joyner of King's College, London.";
+      const result = translator.toAmerican(text);
+      const expected = "Prof. Joyner of King's College, London.";
+      assert.equal(result, expected);
+    });
 
     test("Eg10", () => {
       const text = "Tea time is usually around 4 or 4.30.";

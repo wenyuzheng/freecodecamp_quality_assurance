@@ -66,10 +66,13 @@ class Translator {
         return britishOnly[w];
       }
 
-      //   if (americanToBritishTitles[w.toLowerCase()]) {
-      //     const convertedTitle = americanToBritishTitles[w.toLowerCase()];
-      //     return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
-      //   }
+      if (Object.values(americanToBritishTitles).includes(w.toLowerCase())) {
+        const convertedTitle = this.getKeyByValue(
+          americanToBritishTitles,
+          w.toLowerCase()
+        );
+        return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
+      }
 
       if (/[0-9]+.[0-9]{2}/.test(w)) {
         return w.replace(".", ":");
@@ -98,10 +101,8 @@ class Translator {
 
       if (isStartValid && isEndValid) {
         if (text.toLowerCase().includes(key)) {
-          console.log({ key }, britishOnly[key]);
           const s = text.slice(0, index);
           const e = text.slice(index + key.length);
-
           text = s + britishOnly[key] + e;
         }
       }
