@@ -55,19 +55,19 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
 
-    // test("Eg8", () => {
-    //   const text = "No Mr. Bond, I expect you to die.";
-    //   const result = translator.toBritish(text);
-    //   const expected = "No Mr Bond, I expect you to die.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg8", () => {
+      const text = "No Mr. Bond, I expect you to die.";
+      const result = translator.toBritish(text);
+      const expected = "No Mr Bond, I expect you to die.";
+      assert.equal(result, expected);
+    });
 
-    // test("Eg9", () => {
-    //   const text = "Dr. Grosh will see you now.";
-    //   const result = translator.toBritish(text);
-    //   const expected = "Dr Grosh will see you now.";
-    //   assert.equal(result, expected);
-    // });
+    test("Eg9", () => {
+      const text = "Dr. Grosh will see you now.";
+      const result = translator.toBritish(text);
+      const expected = "Dr Grosh will see you now.";
+      assert.equal(result, expected);
+    });
 
     // test("Eg10", () => {
     //   const text = "Lunch is at 12:15 today.";

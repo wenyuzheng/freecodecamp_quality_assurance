@@ -28,17 +28,17 @@ class Translator {
         return americanOnly[w];
       }
 
-      //   if (americanToBritishTitles[w]) {
-      //       console.log(americanToBritishTitles[w]);
-      //       return americanToBritishTitles[w];
-      //     }
+      if (americanToBritishTitles[w.toLowerCase()]) {
+        const convertedTitle = americanToBritishTitles[w.toLowerCase()];
+        return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
+      }
       return w;
     });
 
     text = convertedWords.join(" ");
 
     Object.keys(americanOnly).forEach((key) => {
-      console.log({ key }, text.toLowerCase().includes(key));
+      //   console.log({ key }, text.toLowerCase().includes(key));
       if (text.toLowerCase().includes(key)) {
         text = text.toLowerCase().replace(key, americanOnly[key]);
       }
