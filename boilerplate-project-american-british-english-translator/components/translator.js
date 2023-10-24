@@ -149,8 +149,8 @@ const americanToBritishTitles = require("./american-to-british-titles.js");
 const britishOnly = require("./british-only.js");
 
 const translateTime = (text, toBritish) => {
-  const from = toBritish ? "." : ":";
-  const to = toBritish ? ":" : ".";
+  const from = toBritish ? ":" : ".";
+  const to = toBritish ? "." : ":";
 
   const timeRegex = new RegExp("[0-9]+" + from + "[0-9]{2}");
   if (timeRegex.test(text)) {
@@ -159,16 +159,43 @@ const translateTime = (text, toBritish) => {
   return text;
 };
 
+const translateTitle = (text, toBritish) => {
+  for (const [k, v] of Object.entries(americanToBritishTitles)) {
+    const from = toBritish ? k : v;
+    const to = toBritish ? v : k;
+
+    if (text.toLowerCase() === from) {
+      return `<span class="highlight">${capitalise(to)}</span>`;
+    }
+  }
+  return text;
+};
+
+const capitalise = (text) => {
+  return text[0].toUpperCase() + text.slice(1);
+};
+
 class Translator {
   toBritish(text) {
     const r = text.split(" ").map((e) => {
-      return translateTime(e, true);
+      const t = translateTime(e, true);
+      return translateTitle(t, true);
     });
 
     console.log(r);
+    return r.join(" ");
   }
 
-  toAmerican(text) {}
+  toAmerican(text) {
+    const r = text.split(" ").map((e) => {
+      const t = translateTime(e, false);
+      return translateTitle(t, false);
+    });
+
+    console.log(r);
+    return r.join(" ");
+  }
 }
 
 module.exports = Translator;
+module.exports.translateTitle = translateTitle;
