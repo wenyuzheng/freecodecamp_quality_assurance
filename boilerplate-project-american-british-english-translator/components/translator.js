@@ -15,32 +15,28 @@ class Translator {
     const words = text.split(" ");
     const convertedWords = words.map((w) => {
       if (americanToBritishSpelling[w]) {
-        return americanToBritishSpelling[w];
+        return `<span class="highlight">${americanToBritishSpelling[w]}</span>`;
       }
 
       if (americanOnly[w]) {
-        return americanOnly[w];
+        return `<span class="highlight">${americanOnly[w]}</span>`;
       }
 
       if (americanToBritishTitles[w.toLowerCase()]) {
         const convertedTitle = americanToBritishTitles[w.toLowerCase()];
-        return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
+        return `<span class="highlight">${
+          convertedTitle[0].toUpperCase() + convertedTitle.slice(1)
+        }</span>`;
       }
 
       if (/[0-9]+:[0-9]{2}/.test(w)) {
-        return w.replace(":", ".");
+        return `<span class="highlight">${w.replace(":", ".")}</span>`;
       }
 
       return w;
     });
 
     text = convertedWords.join(" ");
-
-    // Object.keys(americanOnly).forEach((key) => {
-    //   if (text.toLowerCase().includes(key)) {
-    //     text = text.toLowerCase().replace(key, americanOnly[key]);
-    //   }
-    // });
 
     Object.keys(americanOnly).forEach((key) => {
       const index = text.toLowerCase().indexOf(key);
@@ -62,7 +58,7 @@ class Translator {
         if (text.toLowerCase().includes(key)) {
           const s = text.slice(0, index);
           const e = text.slice(index + key.length);
-          text = s + americanOnly[key] + e;
+          text = s + `<span class="highlight">${americanOnly[key]}</span>` + e;
         }
       }
     });
@@ -81,14 +77,15 @@ class Translator {
 
     const words = text.split(" ");
     const convertedWords = words.map((w) => {
-      console.log({ w });
-
       if (Object.values(americanToBritishSpelling).includes(w)) {
-        return this.getKeyByValue(americanToBritishSpelling, w);
+        return `<span class="highlight">${this.getKeyByValue(
+          americanToBritishSpelling,
+          w
+        )}</span>`;
       }
 
       if (britishOnly[w]) {
-        return britishOnly[w];
+        return `<span class="highlight">${britishOnly[w]}</span>`;
       }
 
       if (Object.values(americanToBritishTitles).includes(w.toLowerCase())) {
@@ -96,11 +93,13 @@ class Translator {
           americanToBritishTitles,
           w.toLowerCase()
         );
-        return convertedTitle[0].toUpperCase() + convertedTitle.slice(1);
+        return `<span class="highlight">${
+          convertedTitle[0].toUpperCase() + convertedTitle.slice(1)
+        }</span>`;
       }
 
       if (/[0-9]+.[0-9]{2}/.test(w)) {
-        return w.replace(".", ":");
+        return `<span class="highlight">${w.replace(".", ":")}</span>`;
       }
 
       return w;
@@ -128,7 +127,7 @@ class Translator {
         if (text.toLowerCase().includes(key)) {
           const s = text.slice(0, index);
           const e = text.slice(index + key.length);
-          text = s + britishOnly[key] + e;
+          text = s + `<span class="highlight">${britishOnly[key]}</span>` + e;
         }
       }
     });

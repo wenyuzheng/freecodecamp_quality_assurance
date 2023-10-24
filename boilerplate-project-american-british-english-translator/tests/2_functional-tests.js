@@ -21,7 +21,8 @@ suite("Functional Tests", () => {
           assert.equal(res.status, 200);
           assert.deepEqual(res.body, {
             text: "Mangoes are my favorite fruit.",
-            translation: "Mangoes are my favourite fruit.",
+            translation:
+              'Mangoes are my <span class="highlight">favourite</span> fruit.',
           });
           done();
         });
