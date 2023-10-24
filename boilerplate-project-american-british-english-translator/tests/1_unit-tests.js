@@ -167,4 +167,38 @@ suite("Unit Tests", () => {
       assert.equal(result, expected);
     });
   });
+
+  suite("est highlight", () => {
+    test("Eg1", () => {
+      const text = "Mangoes are my favorite fruit.";
+      const result = translator.toBritish(text);
+      const expected =
+        'Mangoes are my <span class="highlight">favourite</span> fruit.';
+      assert.equal(result, expected);
+    });
+
+    test("Eg2", () => {
+      const text = "I ate yogurt for breakfast.";
+      const result = translator.toBritish(text);
+      const expected =
+        'I ate <span class="highlight">yoghurt</span> for breakfast.';
+      assert.equal(result, expected);
+    });
+
+    test("Eg3", () => {
+      const text = "We watched the footie match for a while.";
+      const result = translator.toAmerican(text);
+      const expected =
+        'We watched the <span class="highlight">soccer</span> match for a while.';
+      assert.equal(result, expected);
+    });
+
+    test("Eg4", () => {
+      const text = "Paracetamol takes up to an hour to work.";
+      const result = translator.toAmerican(text);
+      const expected =
+        '<span class="highlight">Tylenol</span> takes up to an hour to work.';
+      assert.equal(result, expected);
+    });
+  });
 });
