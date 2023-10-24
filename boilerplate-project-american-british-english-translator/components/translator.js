@@ -171,6 +171,18 @@ const translateTitle = (text, toBritish) => {
   return text;
 };
 
+const translateSpelling = (text, toBritish) => {
+  for (const [k, v] of Object.entries(americanToBritishSpelling)) {
+    const from = toBritish ? k : v;
+    const to = toBritish ? v : k;
+
+    if (text.toLowerCase() === from) {
+      return `<span class="highlight">${to}</span>`;
+    }
+  }
+  return text;
+};
+
 const capitalise = (text) => {
   return text[0].toUpperCase() + text.slice(1);
 };
@@ -179,7 +191,8 @@ class Translator {
   toBritish(text) {
     const r = text.split(" ").map((e) => {
       const t = translateTime(e, true);
-      return translateTitle(t, true);
+      const title = translateTitle(t, true);
+      return translateSpelling(title, true);
     });
 
     console.log(r);
@@ -189,7 +202,8 @@ class Translator {
   toAmerican(text) {
     const r = text.split(" ").map((e) => {
       const t = translateTime(e, false);
-      return translateTitle(t, false);
+      const title = translateTitle(t, false);
+      return translateSpelling(title, false);
     });
 
     console.log(r);

@@ -45,20 +45,22 @@ suite("Unit Tests", () => {
   });
 
   suite("Translate to British", () => {
-    // test("Eg1", () => {
-    //   const text = "Mangoes are my favorite fruit.";
-    //   const result = translator.toBritish(text);
-    //   const expected =
-    //     'Mangoes are my <span class="highlight">favourite</span> fruit.';
-    //   assert.equal(result, expected);
-    // });
-    // test("Eg2", () => {
-    //   const text = "I ate yogurt for breakfast.";
-    //   const result = translator.toBritish(text);
-    //   const expected =
-    //     'I ate <span class="highlight">yoghurt</span> for breakfast.';
-    //   assert.equal(result, expected);
-    // });
+    test("Eg1", () => {
+      const text = "Mangoes are my favorite fruit.";
+      const result = translator.toBritish(text);
+      const expected =
+        'Mangoes are my <span class="highlight">favourite</span> fruit.';
+      assert.equal(result, expected);
+    });
+
+    test("Eg2", () => {
+      const text = "I ate yogurt for breakfast.";
+      const result = translator.toBritish(text);
+      const expected =
+        'I ate <span class="highlight">yoghurt</span> for breakfast.';
+      assert.equal(result, expected);
+    });
+
     // test("Eg3", () => {
     //   const text = "We had a party at my friend's condo.";
     //   const result = translator.toBritish(text);
@@ -134,13 +136,13 @@ suite("Unit Tests", () => {
     //         '<span class="highlight">Tylenol</span> takes up to an hour to work.';
     //       assert.equal(result, expected);
     //     });
-    //     test("Eg3", () => {
-    //       const text = "First, caramelise the onions.";
-    //       const result = translator.toAmerican(text);
-    //       const expected =
-    //         'First, <span class="highlight">caramelize</span> the onions.';
-    //       assert.equal(result, expected);
-    //     });
+    test("Eg3", () => {
+      const text = "First, caramelise the onions.";
+      const result = translator.toAmerican(text);
+      const expected =
+        'First, <span class="highlight">caramelize</span> the onions.';
+      assert.equal(result, expected);
+    });
     //     test("Eg4", () => {
     //       const text = "I spent the bank holiday at the funfair.";
     //       const result = translator.toAmerican(text);
